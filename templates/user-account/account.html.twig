@@ -1,0 +1,113 @@
+{% extends '/garo/index.html.twig' %}
+{% block title %}Mi Cuenta{% endblock %}
+
+
+{% block body %}
+
+<div class="page-head"> 
+            <div class="container">
+                <div class="row">
+                    <div class="page-head-content">
+                        <h1 class="page-title"> Bienvenido a su cuenta AIK </h1>               
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End page header -->
+<br>
+<!--Welcome area -->
+        <div class="Welcome-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 Welcome-entry  col-sm-12">
+                        <div class="col-md-5 col-md-offset-2 col-sm-6 col-xs-12">
+                            <div class="welcome_text wow fadeInLeft" data-wow-delay="0.3s" data-wow-offset="100">
+                                <div class="row">
+                                    <div class="col-md-10 col-md-offset-1 col-sm-12 text-center page-title">
+                                        <!-- /.feature title -->
+                                        <h2>AIK <small> <small>Inmobiliaria</small> </small></h2> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5 col-sm-6 col-xs-12">
+                            <div  class="welcome_services wow fadeInRight" data-wow-delay="0.3s" data-wow-offset="100">
+                                <div class="row">
+                                    <div class="col-xs-6 m-padding">
+                                        <div class="welcome-estate">
+                                            <div class="welcome-icon">
+                                            {% if is_granted('ROLE_AGENT') %}
+                                                <a href="{{path('stat')}}" class="pe-7s-graph2 pe-4x"></a>
+                                            </div>
+                                            <h3>Estadisticas</h3>
+                                            {% else %}
+                                                <a href="{{path('user_favories')}}" class="pe-7s-home pe-4x"></a>
+                                            </div>
+                                            <h3>Ofertas favoritas</h3>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 m-padding">
+                                        <div class="welcome-estate">
+                                            <div class="welcome-icon">
+                                                <a class="pe-7s-users pe-4x" data-toggle="modal" data-target="#exampleModalCenter"></a>
+                                            </div>
+                                            <h3>Información</h3>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-xs-12 text-center">
+                                        <i class="welcome-circle"></i>
+                                    </div>
+
+                                    <div class="col-xs-6 m-padding">
+                                        <div class="welcome-estate">
+                                            <div class="welcome-icon">
+                                                <a href="{{path('user_messages')}}" class="pe-7s-notebook pe-4x"></a>
+                                            </div>
+                                            <h3>Mensajes</h3>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 m-padding">
+                                        <div class="welcome-estate">
+                                            <div class="welcome-icon">
+                                                <a href="{{path('user_testimanials')}}" class="pe-7s-help2 pe-4x"></a>
+                                            </div>
+                                            <h3>Testimoniales</h3>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+<br>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Información</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Elige la opción que necesites y actualiza tu infomación :
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" onclick=" window.open('{{path('profile_update')}}')">Actualiza tú Perfil</button>
+        <button type="button" class="btn btn-success" onclick=" window.open('{{path('password_update')}}')">Actualiza tu contraseña</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerca</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %} 
+
+

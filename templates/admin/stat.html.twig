@@ -1,0 +1,227 @@
+{% extends '/admin/property/index.html.twig' %}
+{% block title %}ESTADÍSTICAS{% endblock %}
+
+{% block page_name %}ESTADÍSTICAS{% endblock %}
+
+{% block body %}
+
+<!-- Count area -->
+        <div class="count-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1 col-sm-12 text-center page-title">
+                        <!-- /.feature title -->
+                        <h2>ESTADISTICAS RESPECTO A NÚMERO DE USUARIOS</h2> 
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-12 col-xs-12 percent-blocks m-main" data-waypoint-scroll="true">
+                        <div class="row">
+                            <div class="col-sm-3 col-xs-6">
+                                <div class="count-item">
+                                    <div class="count-item-circle">
+                                        <span style="color: #2F80ED;" class="pe-7s-users"></span>
+                                    </div>
+                                    <div class="chart" data-percent="5000">
+                                        <h2 class="counter-count">{{usersNB}}</h2>
+                                        <h5><b>NÚMERO DE USUARIOS</b></h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3 col-xs-6">
+                                <div class="count-item">
+                                    <div class="count-item-circle">
+                                        <span style="color: #14DA71;" class="pe-7s-users"></span>
+                                    </div>
+                                    <div class="chart" data-percent="12000">
+                                        <h2 class="counter-count">{{clientNB}}</h2>
+                                        <h5><b>NÚMERO DE CLIENTES</b></h5>
+                                    </div>
+                                </div> 
+                            </div> 
+                            <div class="col-sm-3 col-xs-6">
+                                <div class="count-item">
+                                    <div class="count-item-circle">
+                                        <span style="color: #B6AC11;" class="pe-7s-users"></span>
+                                    </div>
+                                    <div class="chart" data-percent="120">
+                                        <h2 class="counter-count">{{agentNB}}</h2>
+                                        <h5><b>NÚMERO DE AGENTES</b></h5>
+                                    </div>
+                                </div> 
+                            </div> 
+                            <div class="col-sm-3 col-xs-6">
+                                <div class="count-item">
+                                    <div class="count-item-circle">
+                                        <span style="color: #D3740F;" class="pe-7s-users"></span>
+                                    </div>
+                                    <div class="chart" data-percent="5000">
+                                        <h2 class="counter-count">{{adminNB}}</h2>
+                                        <h5><b>NÚMERO DE ADMINISTRADORES</b></h5>
+                                    </div>
+                                </div> 
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+<!-- Count area -->
+        <div class="count-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1 col-sm-12 text-center page-title">
+                        <!-- /.feature title -->
+                        <hr>
+                        <h2>ESTADÍSTICAS SOBRE EL NÚMERO DE PROPIEDADES</h2> 
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-12 col-xs-12 percent-blocks m-main" data-waypoint-scroll="true">
+                        <div class="row">
+                            <div class="col-sm-3 col-xs-6">
+                                <div class="count-item">
+                                    <div class="count-item-circle">
+                                        <span style="color: #2F80ED;" class="pe-7s-home"></span>
+                                    </div>
+                                    <div class="chart" data-percent="5000">
+                                        <h2 class="counter-count">{{propertiesNB}}</h2>
+                                        <h5><b>NÚMERO DE PROPIEDADES</b></h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3 col-xs-6">
+                                <div class="count-item">
+                                    <div class="count-item-circle">
+                                        <span style="color: #14DA71;" class="pe-7s-home"></span>
+                                    </div>
+                                    <div class="chart" data-percent="12000">
+                                        <h2 class="counter-count">{{sellNB}}</h2>
+                                        <h5><b>NÚMERO EN VENTAS</b></h5>
+                                    </div>
+                                </div> 
+                            </div> 
+                            <div class="col-sm-3 col-xs-6">
+                                <div class="count-item">
+                                    <div class="count-item-circle">
+                                        <span style="color: #B6AC11;" class="pe-7s-home"></span>
+                                    </div>
+                                    <div class="chart" data-percent="120">
+                                        <h2 class="counter-count">{{rentNB}}</h2>
+                                        <h5><b>NÚMERO DE RENTAS</b></h5>
+                                    </div>
+                                </div> 
+                            </div> 
+                            <div class="col-sm-3 col-xs-6">
+                                <div class="count-item">
+                                    <div class="count-item-circle">
+                                        <span style="color: #D3740F;" class="pe-7s-home"></span>
+                                    </div>
+                                    <div class="chart" data-percent="5000">
+                                        <h2 class="counter-count">{{justSoldNB}}</h2>
+                                        <h5><b>VENDIDO</b></h5>
+                                    </div>
+                                </div> 
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+<!-- Count area -->
+        <div class="count-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1 col-sm-12 text-center page-title">
+                        <!-- /.feature title -->
+                        <hr>
+                        <h2>ESTADISTICAS RESPECTO A INTERACCIONES DE USUARIOS</h2> 
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-12 col-xs-12 percent-blocks m-main" data-waypoint-scroll="true">
+                        <div class="row">
+                            <div class="col-sm-3 col-xs-6">
+                                <div class="count-item">
+                                    <div class="count-item-circle">
+                                        <span style="color: #2F80ED;" class="pe-7s-graph2"></span>
+                                    </div>
+                                    <div class="chart" data-percent="5000">
+                                        <h2 class="counter-count">{{appsNB}}</h2>
+                                        <h5><b>NÚMERO DE SOLICITUDES</b></h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3 col-xs-6">
+                                <div class="count-item">
+                                    <div class="count-item-circle">
+                                        <span style="color: #14DA71;" class="pe-7s-graph2"></span>
+                                    </div>
+                                    <div class="chart" data-percent="12000">
+                                        <h2 class="counter-count">{{applicationsNB}}</h2>
+                                        <h5><b>SOLICITUDES DE PROPIEDADES</b></h5>
+                                    </div>
+                                </div> 
+                            </div> 
+                            <div class="col-sm-3 col-xs-6">
+                                <div class="count-item">
+                                    <div class="count-item-circle">
+                                        <span style="color: #B6AC11;" class="pe-7s-graph2"></span>
+                                    </div>
+                                    <div class="chart" data-percent="120">
+                                        <h2 class="counter-count">{{favorisNB}}</h2>
+                                        <h5><b>PROPERTIES IN FAVORIS NUMBER </b></h5>
+                                    </div>
+                                </div> 
+                            </div> 
+                            <div class="col-sm-3 col-xs-6">
+                                <div class="count-item">
+                                    <div class="count-item-circle">
+                                        <span style="color: #D3740F;" class="pe-7s-graph2"></span>
+                                    </div>
+                                    <div class="chart" data-percent="5000">
+                                        <h2 class="counter-count">{{testimanialsNB}}</h2>
+                                        <h5><b>NÚMERO D TESTIMONIALES</b></h5>
+                                    </div>
+                                </div> 
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+{% endblock %} 
+
+{% block javascripts %}
+
+    <script type="text/javascript">
+        $('.counter-count').each(function () {
+        $(this).prop('Counter',0).animate({
+            Counter: $(this).text()
+        }, {
+            duration: 2000,
+            easing: 'swing',
+            step: function (now) {
+                $(this).text(Math.ceil(now));
+            }
+        });
+    });
+    </script>
+    
+
+{% endblock %}
+

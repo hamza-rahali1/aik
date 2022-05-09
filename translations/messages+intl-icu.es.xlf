@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="es" target-language="es" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+     <!-- 
+      <trans-unit id="71R7blo" resname="property Searching Just Got So Easy"> 
+        <source>property Searching Just Got So Easy</source>
+        <target>La búsqueda de propiedades ahora es tan fácil</target>
+      </trans-unit>
+      <trans-unit id="fUS81lj" resname="Our Latest Properties">
+        <source>Our Latest Properties</source>
+        <target>Nuestras últimas propiedades</target>  
+      </trans-unit>
+      <trans-unit id="trwDfnf" resname="Check for our latest properties. You didn't find what you need ?">
+        <source>Check for our latest properties. You didn't find what you need ?</source>
+        <target>Consulte nuestras últimas propiedades. ¿No encontró lo que necesita?</target>
+      </trans-unit>
+      <trans-unit id="7lB8WWo" resname="check all our offers.">
+        <source>check all our offers.</source>
+        <target>Consulta todas nuestras ofertas.</target>
+      </trans-unit>
+      -->
+    </body>
+  </file>
+</xliff>

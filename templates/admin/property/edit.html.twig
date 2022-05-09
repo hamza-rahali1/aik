@@ -1,0 +1,157 @@
+{% extends '/admin/property/index.html.twig' %}
+
+{% block title %}Manage the properties{% endblock %}
+
+{% block stylesheets %}
+ <meta name="description" content="AIK is a real-estate template">
+        <meta name="author" content="Kimarotec">
+        <meta name="keyword" content="html5, css, bootstrap, property, real-estate theme , bootstrap template">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+        <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+        <link rel="stylesheet" href="assets/css/normalize.css">
+        <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+        <link rel="stylesheet" href="assets/css/fontello.css">
+        <link href="assets/fonts/icon-7-stroke/css/pe-icon-7-stroke.css" rel="stylesheet">
+        <link href="assets/fonts/icon-7-stroke/css/helper.css" rel="stylesheet">
+        <link href="assets/css/animate.css" rel="stylesheet" media="screen">
+        <link rel="stylesheet" href="assets/css/bootstrap-select.min.css"> 
+        <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/css/icheck.min_all.css">
+        <link rel="stylesheet" href="assets/css/price-range.css">
+        <link rel="stylesheet" href="assets/css/owl.carousel.css">  
+        <link rel="stylesheet" href="assets/css/owl.theme.css">
+        <link rel="stylesheet" href="assets/css/owl.transitions.css">
+        <link rel="stylesheet" href="assets/css/style.css">
+        <link rel="stylesheet" href="assets/css/responsive.css">
+        <link rel="stylesheet" href="assets/css/lightslider.min.css">
+     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+  integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+  crossorigin=""/>
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
+     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+{% endblock %}
+
+
+{% block page %}
+<div class="container mt-3">
+
+<h2><center>Edit the property</center></h2>
+{{ form_start(form) }}
+<div class="row">
+     <div class="col-md-4">{{ form_row(form.title)}}</div>
+     <div class="col-md-4">{{ form_row(form.situation)}}</div>
+     <div class="col-md-4">{{ form_row(form.type)}}</div>
+</div>
+<div class="row">
+     <div class="col-md-4">{{ form_row(form.state)}}</div>
+     <div class="col-md-4">{{ form_row(form.space)}}</div>
+     <div class="col-md-4">{{ form_row(form.price)}}</div>    
+</div>
+<div class="row">
+     <div class="col-md-2">{{ form_row(form.rooms)}}</div>
+     <div class="col-md-2">{{ form_row(form.bedrooms)}}</div>
+     <div class="col-md-2">{{ form_row(form.bathrooms)}}</div>
+     <div class="col-md-2">{{ form_row(form.floors)}}</div>
+     <div class="col-md-2">{{ form_row(form.parking)}}</div>
+</div>
+<div class="row">
+     <div class="col-md-5">{{ form_row(form.video)}}</div>     
+     <div class="col-md-3">{{ form_row(form.cooling)}}</div>
+     <div class="col-md-3">{{ form_row(form.heating)}}</div>  
+</div>
+<div class="row">
+     <div class="col-md-8">{{ form_row(form.address)}}</div>
+     <div class="col-md-4">{{ form_row(form.city)}}</div>
+</div>
+     {{ form_widget(form) }}
+     
+     
+     {% for image in property.images %}
+          <div>
+               <img src="{{ asset('/uploads/' ~ image.name) }}" alt="Image" width="150">
+               <a class="btn btn-danger" href="{{ path('property.delete.image', {id: image.id}) }}" data-delete data-token="{{ csrf_token('delete' ~ image.id) }}">Delete</a>
+          </div> 
+     {% endfor %}
+
+     <center><button class="btn-primary">Save the changes</button></center>
+{{ form_end(form) }}
+<br>
+<div id="map" style="width: 100%; height: 400px" ></div>
+<br>
+{% block javascripts %}
+
+     <script type="text/javascript">
+    window.onload = () => {
+    let links = document.querySelectorAll("[data-delete]")
+          for(link of links){
+               link.addEventListener("click", function(e){
+                    e.preventDefault()
+                    if(confirm("Are you sure you want to delete this image ?")){
+                         fetch(this.getAttribute("href"), {
+                              method: "DELETE",
+                              headers: {
+                              "X-Requested-With": "XMLHttpRequest",
+                              "Content-Type": "application/json"
+                              },
+                              body: JSON.stringify({"_token": this.dataset.token})
+                         }).then(
+                              response => response.json()
+                         ).then(data => {
+                              if(data.success)
+                              this.parentElement.remove()
+                              else
+                              alert(data.error)
+                         }).catch(e => alert(e))
+                    }
+               })
+          }
+     }
+     </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/places.js@1.19.0"></script>
+    <script type="text/javascript">
+     var placesAutocomplete = places({
+     appId: 'plL9YHRBL5R5',
+     apiKey: '2d513f73c21e3cdad44b6b1690415837',
+     container: document.querySelector('#property_address')
+     }); 
+     
+     placesAutocomplete.on('change', e => {
+        document.querySelector('#property_city').value = e.suggestion.city;
+        document.querySelector('#property_lat').value = e.suggestion.latlng.lat;
+        document.querySelector('#property_lng').value = e.suggestion.latlng.lng;
+
+    })
+    </script>
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+    integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+    crossorigin=""></script>
+
+    <script type="text/javascript">
+    var map = L.map('map').setView([{{ property.lat}}, {{ property.lng}}], 13);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    L.marker([{{ property.lat}}, {{ property.lng}}]).addTo(map)
+    .bindPopup('{{ property.title}}')
+    .openPopup();
+    </script>
+
+    
+    
+
+    {% endblock %}
+
+</div>
+
+
+
+{% endblock %}

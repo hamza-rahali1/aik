@@ -1,0 +1,208 @@
+{% extends '/admin/property/index.html.twig' %}
+{% block title %}Website-Info.
+{% endblock %}
+
+{% block page_head %}
+	<h1 class="page-title">
+		<center>Website Settinds |
+			<strong>
+				{% block page_name %}Information Manager
+				{% endblock %}
+			</strong>
+		</center>
+	</h1>
+{% endblock %}
+
+{% block body %}
+	<div class="content-area user-profiel" style="background-color: #FCFCFC;">&nbsp;
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-10 col-sm-offset-1 profiel-container">
+
+					{{ form_start(form)}}
+					<div class="profiel-header">
+						<h3>
+							<b>BUILD</b>
+							YOUR WEBSIE
+							<br>
+							<small>This information will be shown in your Website.</small>
+						</h3>
+						<hr>
+					</div>
+
+					<div class="clear">
+
+						<div class="col-sm-8 col-sm-offset-2">
+
+							<div class="form-group">
+								<label>Email
+									<small>(required)</small>
+								</label>
+								{{form_row(form.email)}}
+							</div>
+							<div class="form-group">
+								<label>Phone
+									<small>(required)</small>
+								</label>
+								{{form_row(form.phone)}}
+							</div>
+							<div class="form-group">
+								<label>Address
+									<small>(required)</small>
+								</label>
+								{{form_row(form.address)}}
+							</div>
+
+						</div>
+					</div>
+
+					<div class="clear">
+						<br>
+						<hr>
+						<br>
+						<div class="col-sm-5 col-sm-offset-1">
+							<div class="form-group">
+								<label>Facebook :</label>
+								{{form_row(form.facebook)}}
+							</div>
+							<div class="form-group">
+								<label>linkedin :</label>
+								{{form_row(form.linkedin)}}
+							</div>
+						</div>
+
+						<div class="col-sm-5">
+							<div class="form-group">
+								<label>Instagram :</label>
+								{{form_row(form.instagram)}}
+							</div>
+							<div class="form-group">
+								<label>Twitter :</label>
+								{{form_row(form.twitter)}}
+							</div>
+						</div>
+					</div>
+
+                <div class="col-sm-5 col-sm-offset-1">
+					<br>
+					<button type='submit' class='btn btn-finish btn-primary'><i class="fa fa-check-square-o"></i> save changes</button>
+				</div>
+
+				</div>
+
+				<div class="clear">
+					<br>
+					<hr>
+					<br>
+
+					<div class="col-sm-8 col-sm-offset-2">
+								<div class="form-group">
+									<label>
+										<div class="profiel-header">
+                                            <h3>
+                                                <b>GENERAL</b> DESCRIPTION
+                                                <br>
+                                                <small>This information will be shown in your Website.</small>
+                                            </h3>
+                                            <hr>
+                                        </div>
+                                    </label>
+									{{form_row(form.generalDescri)}}
+								</div>
+
+								<div class="form-group">
+									<label>
+										<div class="profiel-header">
+                                            <h3>
+                                                <b>SELL</b> DESCRIPTION
+                                                <br>
+                                                <small>This information will be shown in your Website.</small>
+                                            </h3>
+                                            <hr>
+                                        </div>
+									</label>
+									{{form_row(form.sellDescri)}}
+								</div>
+
+								<div class="form-group">
+									<label>
+										<div class="profiel-header">
+                                            <h3>
+                                                <b>PROPERTIES MANAGEMENT</b> DESCRIPTION
+                                                <br>
+                                                <small>This information will be shown in your Website.</small>
+                                            </h3>
+                                            <hr>
+                                        </div>
+									</label>
+									{{form_row(form.gestionDescri)}}
+								</div>
+
+								<div class="form-group">
+									<label>
+										<div class="profiel-header">
+                                            <h3>
+                                                <b>CONSULTANCY</b> DESCRIPTION
+                                                <br>
+                                                <small>This information will be shown in your Website.</small>
+                                            </h3>
+                                            <hr>
+                                        </div>
+									</label>
+									{{form_row(form.consultDescri)}}
+								</div>
+
+								<div class="form-group">
+									<label>
+										<div class="profiel-header">
+                                            <h3>
+                                                <b>CONTRACT MANAGEMENT</b> DESCRIPTION
+                                                <br>
+                                                <small>This information will be shown in your Website.</small>
+                                            </h3>
+                                            <hr>
+                                        </div>
+									</label>
+									{{form_row(form.contratDescri)}}
+								</div>
+
+
+						</div>
+					</div>
+				</div>
+
+				<br>
+				{{form_end(form)}}
+
+			</div>
+		</div>
+		<!-- end row -->
+
+	</div>
+</div>
+{% endblock %}
+{% block javascripts %}
+
+<script src="https://cdn.jsdelivr.net/npm/places.js@1.19.0"></script>
+
+
+<script type="text/javascript">
+var placesAutocomplete = places({appId: 'plL9YHRBL5R5', apiKey: '2d513f73c21e3cdad44b6b1690415837', container: document.querySelector('#contact_aik_address')});
+
+placesAutocomplete.on('change', e => {
+document.querySelector('#contact_aik_lat').value = e.suggestion.latlng.lat;
+document.querySelector('#contact_aik_lng').value = e.suggestion.latlng.lng;
+
+})
+</script>
+<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
+
+<script type="text/javascript">
+	var map = L.map('map').setView([
+{{ website.lat }}, {{ website.lng }}
+], 13);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}).addTo(map);
+
+L.marker([{{ website.lat }}, {{ website.lng }}]).addTo(map).bindPopup('AIK ').openPopup();
+</script>{% endblock %}

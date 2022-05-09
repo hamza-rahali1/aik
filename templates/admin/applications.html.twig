@@ -1,0 +1,82 @@
+{% extends '/admin/property/index.html.twig' %}
+{% block title %}application{% endblock %}
+
+{% block page_name %}Applications Manager{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="page-head"> 
+            <div class="container">
+                <div class="row">
+                    <div class="page-head-content">
+                        <center><h1 class="page-title"><b>Clients Applications</b></h1></center>               
+                    </div>
+                </div>
+            </div>
+        </div>
+
+          <table class="table table-striped">
+            <thead>
+            <tr>
+                <th><h4>Id</h4></th>
+                <th><h4>Correo Electrónico</h4></th>
+                <th><h4>Teléfono</h4></th>
+                <th><h4>Author</h4></th>
+                <th><h4>Tipo de Solicitud</h4></th>
+                <th><h4>Acciones</h4></th>
+                <th><h4>Mensajes</h4></th>
+                <th><h4>Eliminar</h4></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for application in applications|reverse %}
+            <tr>
+                <td><strong>{{ application.id }}</strong></td>
+                <td><strong>{{ application.email }}</strong></td>
+                <td><strong>{{ application.phone }}</strong></td>
+                {% if application.applicant == NULL %}
+                <td><strong style="color: blue; font-weight: bold;">Visitor</strong></td>
+                {% else %}
+                <td><strong style="color: green; font-weight: bold;">Client</strong></td>
+                {% endif %}
+                <td><strong>{{ application.type }}</strong></td>
+
+                <td>
+                <a href="{{ path ('application.show', {id: application.id})  }}" class="btn btn-secondary">Show</a>
+                {% if application.checked == true %}
+                <a href="{{ path ('application.check', {id: application.id})  }}" class="btn btn-secondary" style="color: green; font-weight: bold;" >Revisada</a>
+                {% else %}
+                <a href="{{ path ('application.check', {id: application.id})  }}" class="btn btn-secondary" style="color: red; font-weight: bold;" >Sin revisar</a>
+                {% endif %}
+                </td>
+                <td>
+                {% if application.applicant != NULL %}
+                <a class="btn btn-success" href="{{ path('profile_message' , {id: application.applicant.id}) }}" >Mensaje Enviado</a>
+                {% endif %}
+                </td>
+                <td>
+                <form action="{{ path ('application.delete' , {id: application.id}) }}" method="post">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ application.id) }}">
+                    <button style="color: red;" class="btn btn-secondary pull-right" onclick="return confirm('Are you sure you want to delete this application ? \nApplication Id : {{application.id}}')">ELIMINAR</button>
+                </form>
+                </td>
+        
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+
+
+        <div class="col-md-12"> 
+            <div class="pull-left">
+                <div class="pagination">
+                    {{ knp_pagination_render(applications) }}
+                </div>
+             </div>                
+        </div>
+    </div>
+
+{% endblock %} 

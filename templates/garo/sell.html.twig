@@ -1,0 +1,51 @@
+{% extends 'garo/index.html.twig' %}
+
+{% block title %}Venta{% endblock %}
+
+{% block body %}
+
+        <div class="page-head"> 
+            <div class="container">
+                <div class="row">
+                    <div class="page-head-content">
+                        <h1 class="page-title"><b>SECCIÓN DE VENTA</b></h1>               
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End page header -->
+        <br>
+        
+        
+            <div class="content-area user-profiel" style="background-color: #FCFCFC;">&nbsp;
+            <div class="container">
+               
+                <div class="row">
+                    <div class="col-sm-10 col-sm-offset-1 profiel-container">
+                            <div class="profiel-header">
+                                <h2>
+                                    <center><b>SECCIÓN DE VENTA</b> DESCRIPCIÓN</center>
+                                </h2>
+                                <hr>
+                            </div>
+
+                            <div class="clear">
+
+                                <div class="col">
+                                    <center>
+                                    {{contact.sellDescri|raw}}
+                                    <div >
+
+                                </div>
+                                </center>
+                                </div> 
+                            </div>
+                            <hr>
+                           <center><a href="{{ path('apply') }}" class="btn btn-primary">Solicitar</a></center>
+                        </div>
+<br>
+</div>
+<hr>
+        </div>
+        <br>
+{% endblock %}

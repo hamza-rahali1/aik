@@ -1,0 +1,123 @@
+{% extends 'garo/index.html.twig' %}
+
+{% block title %}Other Services{% endblock %}
+
+{% block body %}
+
+        <div class="page-head"> 
+            <div class="container">
+                <div class="row">
+                    <div class="page-head-content">
+                        <h1 class="page-title"><b>OTHER SERVICES SECTION</b></h1>               
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End page header -->
+        <br>
+        
+        
+            <div class="content-area user-profiel" style="background-color: #FCFCFC;">&nbsp;
+            <div class="container">
+               
+                <div class="row">
+                    <div class="col-sm-10 col-sm-offset-1 profiel-container">
+                            <div class="profiel-header">
+                                <h2>
+                                    <center><b>CONSULTORÍA</b></center>
+                                </h2>
+                                <hr>
+                            </div>
+
+                            <div class="clear">
+
+                                <div class="col">
+                                    <center>
+                                    {{contact.consultDescri|raw}}
+                                    <div >
+
+                                </div>
+                                </center>
+                                </div> 
+                            </div>
+                            <hr>
+                           <center><a href="{{ path('apply') }}" class="btn btn-primary">APLICAR</a></center>
+                        </div>
+                        <br>
+                    </div>
+                    <hr>
+        </div>
+        <br>
+
+
+        <br>
+        
+        
+            <div class="content-area user-profiel" style="background-color: #FCFCFC;">&nbsp;
+            <div class="container">
+               
+                <div class="row">
+                    <div class="col-sm-10 col-sm-offset-1 profiel-container">
+                            <div class="profiel-header">
+                                <h2>
+                                    <center><b>ADMINISTRACIÓN DE LA PROPIEDAD</b></center>
+                                </h2>
+                                <hr>
+                            </div>
+
+                            <div class="clear">
+
+                                <div class="col">
+                                    <center>
+                                    {{contact.gestionDescri|raw}}
+                                    <div >
+
+                                </div>
+                                </center>
+                                </div> 
+                            </div>
+                            <hr>
+                           <center><a href="{{ path('apply') }}" class="btn btn-primary">APLICAR</a></center>
+                        </div>
+                        <br>
+                    </div>
+                    <hr>
+        </div>
+        <br>
+
+
+        <br>
+        
+        
+            <div class="content-area user-profiel" style="background-color: #FCFCFC;">&nbsp;
+            <div class="container">
+               
+                <div class="row">
+                    <div class="col-sm-10 col-sm-offset-1 profiel-container">
+                            <div class="profiel-header">
+                                <h2>
+                                    <center><b>MANEJO DE CONTRATOS</b></center>
+                                </h2>
+                                <hr>
+                            </div>
+
+                            <div class="clear">
+
+                                <div class="col">
+                                    <center>
+                                    {{contact.contratDescri|raw}}
+                                    <div >
+
+                                </div>
+                                </center>
+                                </div> 
+                            </div>
+                            <hr>
+                           <center><a href="{{ path('apply') }}" class="btn btn-primary">APLICAR</a></center>
+                        </div>
+                        <br>
+                    </div>
+                    <hr>
+        </div>
+        <br>
+{% endblock %}

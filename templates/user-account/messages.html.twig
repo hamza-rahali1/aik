@@ -1,0 +1,131 @@
+{% extends 'garo/index.html.twig' %}
+
+{% block title %}Mensajes{% endblock %}
+
+{% block body %}
+
+    
+<div class="page-head"> 
+            <div class="container">
+                <div class="row">
+                    <div class="page-head-content">
+                        <h1 class="page-title"><center><strong>Bienvenido a tu espacio para mensajes</strong></center></h1>               
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End page header -->
+
+    <!-- property area -->
+        <div class="content-area user-profiel" style="background-color: #FCFCFC;">&nbsp;
+            <div class="container">
+                {% for message in app.flashes('success') %}
+                    <div class="alert alert-success">
+                        {{ message }}
+                    </div>
+                {% endfor %}   
+                <div class="row">
+                    <div class="col-sm-10 col-sm-offset-1 profiel-container">
+
+                        {{ form_start(form)}}
+
+                            <div class="profiel-header">
+                                <h3>
+                                    <b>MENSAJE PARA:</b> AIK INMOBILIARIA <br>
+                                </h3>
+                                <hr>
+                            </div>
+
+                            <div class="clear">
+
+                                <div class="col-sm-10 col-sm-offset-1">
+                                    <div class="form-group">
+                                        <label>TITULO O ASUNTO <small>(Obligatorio)</small></label>
+                                        {{form_row(form.title)}}
+                                    </div>
+                                    <div class="form-group">
+                                        <label>CONTENIDO <small>(Obligatorio)</small></label>
+                                        {{form_row(form.content)}}
+                                    </div>
+                                    
+                                </div>
+                                <div class="col-sm-10 col-sm-offset-1">
+                                    <button type='submit' class='btn btn-primary pull-right'><i class="fa fa-envelope">  <b>ENVIAR MENSAJE</b></i></button>
+                                </div>
+                                
+                            </div>
+ 
+                    
+                            
+                            
+                    {{ form_end(form)}}
+
+                </div>
+            </div><!-- end row -->
+
+        </div>
+    </div>
+
+   
+
+     
+  <!-- property area -->
+  <br>
+        <div class="content-area recent-property" style="background-color: #FFF;">
+            <div class="container"> 
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+            {% endfor %}  
+                           
+                    {% for message in messages|reverse %}
+                    <div class="row"> 
+                    {% if app.user == message.author %}
+                    <div class="col-md-9 col-md-offset-3 profiel-container">
+                    {% else %}
+                    <div class="col-md-9 profiel-container">
+                    {% endif %}
+                        <div class="profiel-header">
+                                <h3>
+                                    <b>TITULO O ASUNTO:</b> {{message.title}} <br>
+                                    <small>MENSAJE PARA: {{message.destination.firstName}} {{message.destination.lastName}} : {{message.destination.email}}.</small><br>
+                                    <small>MENSAJE DE: {{message.author.firstName}} {{message.author.lastName}} : {{message.author.email}}.</small>
+                                </h3>
+                             <hr>
+                        </div>
+                        <div class="clear">
+
+                            <div class="col-sm-10 col-sm-offset-1">
+                                {{message.content | raw }}
+                            </div> 
+                            <div class="col-sm-10 col-sm-offset-1">
+                                    {% if app.user == message.author %}
+                                    <form action="{{ path ('message.user.delete' , {id: message.id}) }}" method="post">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ message.id) }}">
+                                    <button class="btn btn-secondary pull-right" onclick="return confirm('Are you sure you want to delete this Message ? \nUser Title : {{message.title}}')">ELIMINAR</button>
+                                    </form>
+                                    {% endif %}
+                            </div> 
+                        </div>
+                    </div>
+                    </div>
+                    <br>
+                    <hr>
+                    <br>
+                    {% endfor %}
+                    <div class="col-md-12"> 
+                        <div class="center">
+                            <div class="pagination">
+                            {{ knp_pagination_render(messages) }}
+                            </div>
+                        </div>                
+                    </div>
+ 
+                </div>    
+            </div>
+        </div>
+
+        
+   {% endblock %}  

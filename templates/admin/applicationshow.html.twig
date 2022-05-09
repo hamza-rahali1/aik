@@ -1,0 +1,387 @@
+{% extends 'garo/index.html.twig' %}
+
+{% block title %}Application{% endblock %}
+
+ 
+
+{% block body %}
+        <div class="page-head"> 
+            <div class="container">
+                <div class="row">
+                    <div class="page-head-content">
+                        <h1 class="page-title"><center><b>AIK Inmobiliaria</b> | Application Details</h1></center>              
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End page header -->
+
+        <!-- End page header -->
+ 
+
+   
+        {% if (application.applicant) and (application.property) %}
+
+        <div class="content-area application.applicant-profiel" style="background-color: #FCFCFC;">&nbsp;
+            <div class="container">   
+                <div class="row">
+                    <div class="col-sm-10 col-sm-offset-1 profiel-container">
+                            <div class="profiel-header">
+                                <h3>
+                                    <b>APPLICATION</b> INFORMATION <br>
+                                </h3>
+                                <hr>
+                            </div>
+
+                            <div class="clear">
+
+                                <div class="col-sm-5 col-sm-offset-1">
+                                    <h4><b>CLIENT</b> INFORMATION</h4>
+                                    <div >
+                                        First Name: <b>{{application.applicant.firstName}}</b>
+                                    </div>
+                                    <div >
+                                        Last Name: <b>{{application.applicant.lastName}}</b>
+                                    </div>
+                                    <div >
+                                        Phone number: <b>{{application.applicant.phone}}</b>
+                                    </div>
+                                    <div >
+                                        Email Address: <b>{{application.applicant.email}}</b>
+                                    </div>                          
+                                  
+                                </div>
+                                <div class="col-sm-5">
+                                    <h4><b>PROPERTY</b> INFORMATION</h4>
+                                    <div >
+                                        Property Title: <b>{{application.property.title}}</b>
+                                    </div>
+                                    <div >
+                                        Property Address: <b>{{application.property.address}}</b>
+                                    </div>
+                                    <div >
+                                        Property Status: <b>{{application.property.situation}}</b>
+                                    </div>
+                                    <div >
+                                        Property Price: <b>{{application.property.formattedPrice}} MX</b>
+                                    </div>
+                                </div>
+                                </div> 
+                            </div>
+                          </div> 
+                            </div>
+
+         <div class="content-area application.applicant-profiel" style="background-color: #FCFCFC;">&nbsp;
+            <div class="container">   
+                <div class="row">
+                    <div class="col-sm-10 col-sm-offset-1 profiel-container">
+
+                            <div class="profiel-header">
+                                <h3>
+                                    <b>DETAILS</b> ABOUT APPLICATION <br>
+                                    <small>This information will let you know more about the client.</small>
+                                </h3>
+                                <hr>
+                            </div>
+
+                            <div class="clear">
+
+                                <div class="col-sm-5 col-sm-offset-1">
+                                    <div >
+                                        <label>Application type :</label>
+                                        {{application.type}}
+                                    </div>
+                                                                                               
+                                </div>
+                                <div class="col-sm-5">
+                                <div >
+                                        <label>Address :</label>
+                                        {{application.address}}
+                                    </div>  
+                                    
+                                </div>
+                                </div>
+
+                                <div class="col-sm-10 col-sm-offset-1">
+                                <div >
+                                        <label>Content :</label>
+                                        {{application.content}}
+                                    </div>
+                                </div>
+                            </div>
+                    
+
+                </div>
+            </div><!-- end row -->
+
+        </div>
+    </div>        
+
+        {% elseif (application.applicant) %}
+        <div class="content-area application.applicant-profiel" style="background-color: #FCFCFC;">&nbsp;
+            <div class="container">   
+                <div class="row">
+                    <div class="col-sm-10 col-sm-offset-1 profiel-container">
+                            <div class="profiel-header">
+                                <h3>
+                                    <b>APPLICATION</b> INFORMATION <br>
+                                </h3>
+                                <hr>
+                            </div>
+
+                            <div class="clear">
+
+                                <div class="col">
+                                    <center>
+                                    <h4><b>CLIENT</b> INFORMATION</h4>
+                                    <div >
+                                        First Name: <b>{{application.applicant.firstName}}</b>
+                                    </div>
+                                    <div >
+                                        Last Name: <b>{{application.applicant.lastName}}</b>
+                                    </div>
+                                    <div >
+                                        Phone number: <b>{{application.applicant.phone}}</b>
+                                    </div>
+                                    <div >
+                                        Email Address: <b>{{application.applicant.email}}</b>
+                                    </div>                          
+                                    </center>
+                                </div>
+                            </div>
+                          </div> 
+                            </div>
+
+         <div class="content-area user-profiel" style="background-color: #FCFCFC;">&nbsp;
+            <div class="container">   
+                <div class="row">
+                    <div class="col-sm-10 col-sm-offset-1 profiel-container">
+
+                            <div class="profiel-header">
+                                <h3>
+                                    <b>BUILD</b> YOUR APPLICATION <br>
+                                    <small>This information will let us know more about you.</small>
+                                </h3>
+                                <hr>
+                            </div>
+
+                            <div class="clear">
+
+                                <div class="col-sm-5 col-sm-offset-1">
+                                    <div >
+                                        <label>Application type :</label>
+                                        {{application.type}}
+                                    </div>
+                                                                                               
+                                </div>
+                                <div class="col-sm-5">
+                                <div >
+                                        <label>Address :</label>
+                                        {{application.address}}
+                                    </div>  
+                                    
+                                </div>
+                                </div>
+
+                                <div class="col-sm-10 col-sm-offset-1">
+                                <div >
+                                        <label>Content :</label>
+                                        {{application.content}}
+                                    </div>
+                                </div>
+
+                                
+                            </div>
+
+
+                </div>
+            </div><!-- end row -->
+
+        </div>
+    </div>
+
+        {% elseif (application.property) %}
+
+        <div class="content-area application.applicant-profiel" style="background-color: #FCFCFC;">&nbsp;
+            <div class="container">   
+                <div class="row">
+                    <div class="col-sm-10 col-sm-offset-1 profiel-container">
+                            <div class="profiel-header">
+                                <h3>
+                                    <b>APPLICATION</b> INFORMATION <br>
+                                    <small>If propery information are wrong, please check<a href="{{ path('profile_update')}}">PROPERTIES</a> section again.</small>
+                                </h3>
+                                <hr>
+                            </div>
+
+                            <div class="clear">
+
+                                <div class="col">
+                                    <center>
+                                    <h4><b>PROPERTY</b> INFORMATION</h4>
+                                    <div >
+                                        Property Title: <b>{{application.property.title}}</b>
+                                    </div>
+                                    <div >
+                                        Property Address: <b>{{application.property.address}}</b>
+                                    </div>
+                                    <div >
+                                        Property Status: <b>{{application.property.situation}}</b>
+                                    </div>
+                                    <div >
+                                        Property Price: <b>{{application.property.formattedPrice}} MX</b>
+                                    </div>
+                                </div>
+                                </center>
+                                </div> 
+                            </div>
+                          </div> 
+                            </div>
+<br>
+<hr>
+<br>
+         <div class="content-area application.applicant-profiel" style="background-color: #FCFCFC;">&nbsp;
+            <div class="container">   
+                <div class="row">
+                    <div class="col-sm-10 col-sm-offset-1 profiel-container">
+
+                            <div class="profiel-header">
+                                <h3>
+                                    <b>BUILD</b> YOUR APPLICATION <br>
+                                    <small>This information will let us know more about you.</small>
+                                </h3>
+                                <hr>
+                            </div>
+
+                            <div class="clear">
+
+                                <div class="col-sm-5 col-sm-offset-1">
+
+                                    <div >
+                                        <label>First Name <small>(required)</small></label>
+                                         {{application.firstName}}
+                                    </div>
+                                    <div >
+                                        <label>Last Name <small>(required)</small></label>
+                                        {{application.lastName}}
+                                    </div>
+                                    <div >
+                                        <label>Address :</label>
+                                        {{application.address}}
+                                    </div>
+                                    <div >
+                                        <label>Other Email :</label>
+                                        {{application.otherEmail}}
+                                    </div>                                   
+                                  
+                                </div>
+                                <div class="col-sm-5">
+                                    <div >
+                                        <label>Email <small>(required)</small></label>
+                                        {{application.email}}
+                                    </div> 
+                                    <div >
+                                        <label>Phone <small>(required)</small></label>
+                                        {{application.phone}}
+                                    </div>
+                                    <div >
+                                        <label>Application type :</label>
+                                        {{application.type}}
+                                    </div>
+                                    <div >
+                                        <label>Content :</label>
+                                        {{application.content}}
+                                    </div>
+                                </div>
+                                </div>
+
+                                <div class="col-sm-5 col-sm-offset-1">
+
+                                <button type='submit' class='btn btn-finish btn-primary'><i class="fa fa-check-square-o"></i> Apply</button>
+                            </div>
+  
+                                
+                            </div>
+                    
+
+                </div>
+            </div><!-- end row -->
+
+        </div>
+    </div>     
+
+        {% else %}
+            <div class="content-area application.applicant-profiel" style="background-color: #FCFCFC;">&nbsp;
+            <div class="container">   
+                <div class="row">
+                    <div class="col-sm-10 col-sm-offset-1 profiel-container">
+
+                            <div class="profiel-header">
+                                <h3>
+                                    <b>BUILD</b> YOUR APPLICATION <br>
+                                    <small>This information will let us know more about you.</small>
+                                </h3>
+                                <hr>
+                            </div>
+
+                            <div class="clear">
+
+                                <div class="col-sm-5 col-sm-offset-1">
+
+                                    <div >
+                                        <label>First Name <small>(required)</small></label>
+                                         {{application.firstName}}
+                                    </div>
+                                    <div >
+                                        <label>Last Name <small>(required)</small></label>
+                                        {{application.lastName}}
+                                    </div>
+                                    <div >
+                                        <label>Address :</label>
+                                        {{application.address}}
+                                    </div>
+                                    <div >
+                                        <label>Other Email :</label>
+                                        {{application.otherEmail}}
+                                    </div>                                   
+                                  
+                                </div>
+                                <div class="col-sm-5">
+                                    <div >
+                                        <label>Email <small>(required)</small></label>
+                                        {{application.email}}
+                                    </div> 
+                                    <div >
+                                        <label>Phone <small>(required)</small></label>
+                                        {{application.phone}}
+                                    </div>
+                                    <div >
+                                        <label>Application type :</label>
+                                        {{application.type}}
+                                    </div>
+                                    <div >
+                                        <label>Content :</label>
+                                        {{application.content}}
+                                    </div>
+                                </div>
+                                </div>
+
+                                <div class="col-sm-5 col-sm-offset-1">
+
+                                <button type='submit' class='btn btn-finish btn-primary'><i class="fa fa-check-square-o"></i> Apply</button>
+                            </div>
+  
+                                
+                            </div>
+                    
+
+                </div>
+            </div><!-- end row -->
+
+        </div>
+    </div>     
+        {% endif %}
+</div>        
+</div>
+
+   {% endblock %}

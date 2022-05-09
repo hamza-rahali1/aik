@@ -1,0 +1,123 @@
+{% extends 'garo/index.html.twig' %}
+
+{% block title %}Actualiza tú Perfil{% endblock %}
+
+{% block body %}
+
+        <div class="page-head"> 
+            <div class="container">
+                <div class="row">
+                    <div class="page-head-content">
+                        <h1 class="page-title"> Actualiza tú Perfil </h1>               
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End page header -->
+ 
+
+   
+
+        <div class="content-area user-profiel" style="background-color: #FCFCFC;">&nbsp;
+            <div class="container">
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+            {% endfor %}   
+                <div class="row">
+                    <div class="col-sm-10 col-sm-offset-1 profiel-container">
+
+                        {{ form_start(form)}}
+                            <div class="profiel-header">
+                                <h3>
+                                    <b>Actualiza</b> tú Perfil <br>
+                                    <small>Esta información nos permitirá saber más sobre usted.</small>
+                                </h3>
+                                <hr>
+                                {% for message in app.flashes('success') %}
+                                    <div class="alert alert-success">
+                                        {{ message }}
+                                    </div>
+                                    <hr>
+                                {% endfor %}
+                            </div>
+
+                            <div class="clear">
+
+                                <div class="col-sm-5 col-sm-offset-1">
+
+                                    <div class="form-group">
+                                        <label>Nombre  </label>
+                                         {{form_row(form.firstName)}}
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Apellido  </label>
+                                        {{form_row(form.lastName)}}
+                                    </div>
+                                    {% if is_granted('ROLE_ADMIN') %}
+                                    <div class="form-group">
+                                        {{form_row(form.role)}}
+                                    </div>
+                                    {% endif %} 
+                                </div>
+                                <div class="col-sm-5">
+                                    <div class="form-group">
+                                        <label>Teléfono Celular </label>
+                                        {{form_row(form.phone)}}
+                                    </div>
+                                     <div class="form-group">
+                                        <label>Correo Electrónico </label>
+                                        {{form_row(form.email)}}
+                                    </div> 
+                                    
+                                </div>  
+
+                            </div>
+
+                            <div class="clear">
+                                <br>
+                                <hr>
+                                <br>
+                                <div class="col-sm-5 col-sm-offset-1">
+                                    <div class="form-group">
+                                        <label>Facebook :</label>
+                                        {{form_row(form.facebook)}}
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Linkedin :</label>
+                                        {{form_row(form.linkedin)}}
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Sitio Web :</label>
+                                        {{form_row(form.website)}}
+                                    </div>
+                                </div>  
+
+                                <div class="col-sm-5">
+                                    <div class="form-group">
+                                        <label>Otro Email :</label>
+                                        {{form_row(form.otherEmail)}}
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Como te podemos ayudar?</label>
+                                        {{form_row(form.description)}}
+                                    </div>
+                                </div>
+ 
+                            </div>
+                    
+                            <div class="col-sm-5 col-sm-offset-1">
+                                <br>
+                                <button type='submit' class='btn btn-finish btn-primary'>Actualiza <i class="fa fa-check-square-o"></i></button>
+                            </div>
+                            <br>
+                    {{form_end(form)}}
+
+                </div>
+            </div><!-- end row -->
+
+        </div>
+    </div>     
+
+   {% endblock %}  

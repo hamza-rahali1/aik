@@ -1,0 +1,61 @@
+{% extends '/admin/property/index.html.twig' %}
+{% block title %}GERENTE DE COMUNICACIONES{% endblock %}
+
+{% block page_name %}GERENTE DE COMUNICACIONES{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="page-head"> 
+            <div class="container">
+                <div class="row">
+                    <div class="page-head-content">
+                        <center><h1 class="page-title"><b>SIN RESPUESTA DE CLIENTES</b></h1></center>               
+                    </div>
+                </div>
+            </div>
+        </div>
+          <table class="table table-striped">
+            <thead>
+            <tr>
+                <th><h4>ID</h4></th>
+                <th><h4>Nombre</h4></th>
+                <th><h4>Apellido</h4></th>
+                <th><h4>Correo Electrónico</h4></th>
+                <th><h4>Teléfono</h4></th>
+                <th><h4>Ocupación</h4></th>
+                <th><h4>Acciones</h4></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for user in notAnswered|reverse %}
+            <tr>
+                <td><strong>{{ user.id }}</strong></td>
+                <td><strong>{{ user.firstName }}</strong></td>
+                <td><strong>{{ user.lastName }}</strong></td>
+                <td><strong>{{ user.email }}</strong></td>
+                <td><strong>{{ user.phone }}</strong></td>
+                <td><strong>{{ user.role }}</strong></td>
+                <td>
+
+                <a class="btn btn-success" href="{{ path('profile_message' , {id: user.id}) }}" >ENVIAR MENSAJE</a>
+
+             </td>
+        
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+
+
+        <div class="col-md-12"> 
+            <div class="pull-left">
+                <div class="pagination">
+                    {{ knp_pagination_render(notAnswered) }}
+                </div>
+             </div>                
+        </div>
+    </div>
+
+{% endblock %} 

@@ -1,0 +1,123 @@
+{% extends '/admin/property/index.html.twig' %}
+{% block title %}testimanials{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+<link rel="stylesheet" href="assets/css/quote-carousel.css">
+
+{% endblock %}
+
+{% block page_head %}<h1 class="page-title"><center>Hello | <span class="orange strong">{% block page_name %}{{ app.user.firstName }} {{ app.user.lastName }}{% endblock %}</span</center></h1>{% endblock %}
+
+
+{% block body %} 
+
+        <!-- property area -->
+        <div class="content-area user-profiel" style="background-color: #FCFCFC;">&nbsp;
+            <div class="container">
+                {% for message in app.flashes('success') %}
+                    <div class="alert alert-success">
+                        {{ message }}
+                    </div>
+                {% endfor %}   
+                <div class="row">
+                    <div class="col-sm-10 col-sm-offset-1 profiel-container">
+
+                        {{ form_start(form)}}
+
+                            <div class="profiel-header">
+                                <h3>
+                                    <b>Lo que los clientes piensan sobre nosotros<br>
+                                    <small>¡Tu opinión significa mucho!</small>
+                                </h3>
+                                <hr>
+                            </div>
+
+                            <div class="clear">
+
+                                <div class="col-sm-10 col-sm-offset-1">
+                                    <div class="form-group">
+                                        <label>Comparte tú Experiencia</label>
+                                        {{form_row(form.content)}}
+                                    </div>
+                                    
+                                </div>
+                                <div class="col-sm-10 col-sm-offset-1">
+                                    <button type='submit' class='btn btn-primary pull-right'><i class="fa fa-envelope">  <b>Publicar</b></i></button>
+                                </div>
+                                
+                            </div>
+ 
+                    
+                            
+                            
+                    {{ form_end(form)}}
+
+                </div>
+            </div><!-- end row -->
+
+        </div>
+    </div>
+
+            <!-- property area -->
+        <br>
+                <div class="content-area recent-property" style="background-color: #FFF;">
+                    <div class="container">   
+                            {% for testimanial in testimanials|reverse %}
+                            <!-- Quote 1 -->
+                            <div class="container">
+                                <div class="row" style="display: flex;justify-content: space-between">
+                                <div class="col">
+                                {% if app.user == testimanial.author %}
+                                <blockquote class="quote-box-creator">
+                                {% else %}
+                                <blockquote class="quote-box">
+                                {% endif %}
+                                <p class="quotation-mark">
+                                    “
+                                </p>
+                                <p class="quote-text">
+                                   {{ testimanial.content|raw }} 
+                                </p>
+                                <hr>
+                                <div class="blog-post-actions">
+                                    <p class="blog-post-bottom pull-left">
+                                    {{testimanial.author.firstName}} {{testimanial.author.lastName}}
+                                    </p>
+                                     <div class="col-sm-10 col-sm-offset-1">
+                                            {% if app.user == testimanial.author or is_granted('ROLE_AGENT') %}
+                                            <form action="{{ path ('testimanial.user.delete' , {id: testimanial.id}) }}" method="post">
+                                            <input type="hidden" name="_method" value="DELETE">
+                                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ testimanial.id) }}">
+                                            <button class="btn btn-secondary pull-right" onclick="return confirm('Are you sure you want to delete this testimanial ?')">Delete</button>
+                                            </form>
+                                            {% endif %}                           
+                                    </div>
+                                </div>
+                                </blockquote>
+                                </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+
+                            <div class="col-md-12"> 
+                                <div class="center">
+                                    <div class="pagination">
+                                        {{ knp_pagination_render(testimanials) }}
+                                     </div>
+                                </div>                
+                            </div>  
+                        </div>    
+                    </div>
+                </div>
+
+
+{% endblock %} 
+
+{% block javascripts %}
+
+{{ parent() }}
+
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+{% endblock %}

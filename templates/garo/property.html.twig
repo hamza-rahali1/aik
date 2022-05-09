@@ -1,0 +1,361 @@
+{% extends 'garo/index.html.twig' %}
+
+{% block title %}{{property.title}}{% endblock %}
+
+
+{% block body %}
+
+        <div class="page-head"> 
+            <div class="container">
+                <div class="row">
+                    <div class="page-head-content">
+                        <h1 class="page-title"><center>AIK INMOBILIARIA |<b> {{property.title}}</b></center></h1>               
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End page header -->
+
+        <!-- property area -->
+        <div class="content-area single-property" style="background-color: #FCFCFC;">&nbsp;
+            <div class="container">   
+
+                <div class="clearfix padding-top-40" >
+
+                    <div class="col-md-8 single-property-content prp-style-1 ">
+                        <div class="row">
+                            <div class="light-slide-item">            
+                                <div class="clearfix">
+                                <div class="slider">
+                                    <ul id="bg-slider" class="owl-carousel owl-theme">
+                                        {% for image in property.images %}
+                                        <li data-thumb="{{ asset('/uploads/' ~ image.name )}}"> 
+                                            <img src="{{ asset('/uploads/' ~ image.name )}}" alt"image">
+                                        </li>
+                                       {% endfor %}                                        
+                                    </ul>
+                                    </div>
+                                    <br>
+                                    <br>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="single-property-wrapper">
+                            <div class="single-property-header">                                          
+                                <h1 class="property-title pull-left">{{property.title}}</h1>
+                                <span class="property-price pull-right">{{property.formattedPrice}} MX</span>
+                            </div>
+
+                            <div class="property-meta entry-meta clearfix ">   
+
+                                <div class="col-xs-6 col-sm-3 col-md-3 p-b-15">
+                                    
+                                    <span class="property-info-entry">
+                                        <span class="property-info-label">ESTADO</span>
+                                        {% if property.situation == 1 %}
+                                        <span class="property-info-icon icon-tag">                                        
+                                        <img src="assets/img/icon/sale-orange.png">
+                                        </span><br>
+                                            <span class="badge badge-pill badge-success" style=" left:10px; background:#0FB8D3; top:10px;z-index: 3">For Sell</span>
+                                        {% elseif property.situation == 2 %}
+                                        <span class="property-info-icon icon-tag">                                        
+                                        <img src="assets/img/icon/rent-orange.png">
+                                        </span><br>
+                                            <span class="badge badge-pill badge-success" style=" left:10px; background:#23E97A; top:10px;z-index: 3">For Rent</span>
+                                            {% else %}
+                                            <span class="badge badge-pill badge-success" style=" left:10px; background:#DC9A0C; top:10px;z-index: 3">Just Sold</span>   
+                                            {% endif %}
+                                        
+                                    </span>
+                                </div>
+
+                                <div class="col-xs-6 col-sm-3 col-md-3 p-b-15">
+                                    <span class="property-info icon-area">
+                                        <img src="assets/img/icon/os-orange.png">
+                                    </span>
+                                    <span class="property-info-entry">
+                                        <span class="property-info-label">SUPERFICIE</span>
+                                        <span class="property-info-value">{{property.space}}<b class="property-info-unit"> m²</b></span>
+                                    </span>
+                                </div>
+
+                                <div class="col-xs-6 col-sm-3 col-md-3 p-b-15">
+                                    <span class="property-info-icon icon-bed">
+                                        <img src="assets/img/icon/bed-orange.png">
+                                    </span>
+                                    <span class="property-info-entry">
+                                        <span class="property-info-label">RECAMARAS</span>
+                                        <span class="property-info-value">{{property.Bedrooms}}</span>
+                                    </span>
+                                </div>
+
+                                <div class="col-xs-6 col-sm-3 col-md-3 p-b-15">
+                                    <span class="property-info-icon icon-bed">
+                                        <img src="assets/img/icon/cars-orange.png">
+                                    </span>
+                                    <span class="property-info-entry">
+                                        <span class="property-info-label">GARAJES DE COCHES</span>
+                                        <span class="property-info-value">{{property.Parking}}</span>
+                                    </span>
+                                </div>
+
+                                <div class="col-xs-6 col-sm-3 col-md-3 p-b-15">
+                                    <span class="property-info-icon icon-bath">
+                                        <img src="assets/img/icon/room-orange.png">
+                                    </span>
+                                    <span class="property-info-entry">
+                                        <span class="property-info-label">TOTAL DE HABITACIONES</span>
+                                        <span class="property-info-value">{{property.Rooms}}</span>
+                                    </span>
+                                </div>
+
+                                <div class="col-xs-6 col-sm-3 col-md-3 p-b-15">
+                                    <span class="property-info-icon icon-garage">
+                                        <img src="assets/img/icon/room-orange.png">
+                                    </span>
+                                    <span class="property-info-entry">
+                                        <span class="property-info-label">PISOS</span>
+                                        <span class="property-info-value">{{property.floors}}</span>
+                                    </span>
+                                </div>
+                                
+                                <div class="col-xs-6 col-sm-3 col-md-3 p-b-15">
+                                    <span class="property-info-icon icon-garage">
+                                        <img src="assets/img/icon/shawer-orange.png">
+                                    </span>
+                                    <span class="property-info-entry">
+                                        <span class="property-info-label">CUARTOS DE BAÑO</span>
+                                        <span class="property-info-value">{{property.bathrooms}}</span>
+                                    </span>
+                                </div>
+
+
+                            </div>
+                            <!-- .property-meta -->
+
+                            <div class="section">
+                                <h4 class="s-property-title">DESCRIPCIÓN</h4>
+                                <div class="s-property-content">
+                                {{property.description | raw }}
+                                </div>
+                            </div>
+                            <!-- End description area  -->
+
+                            <div class="section additional-details">
+
+                                <h4 class="s-property-title">DETALLES ADICIONALES</h4>
+
+                                <ul class="additional-details-list clearfix">
+                                    <li>
+                                        <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">CIUDAD</span>
+                                        <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">{{property.city}}</span>
+                                    </li>
+
+                                    <li>
+                                        <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">DIRECCIÓN</span>
+                                        <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">{{property.address}}</span>
+                                    </li>
+                                    <li>
+                                        <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">TIPO</span>
+                                        
+                                        {% if property.type == 1 %}
+                                            <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">Department</span>
+                                        {% elseif property.type == 2 %}
+                                            <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">House</span>
+                                        {% elseif property.type == 3 %}
+                                            <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">Land</span>
+                                        {% elseif property.type == 4 %}
+                                            <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">Offices</span>
+                                        {% elseif property.type == 5 %}
+                                            <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">Wineries</span>
+                                        {% else %}
+                                            <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">Others</span>
+                                        {% endif %}
+                                        
+                                        
+                                    </li>
+
+                                    <li>
+                                        <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">ENFRIAMIENTO</span>
+                                        <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">{{property.cooling}}</span>
+                                    </li>
+
+                                    <li>
+                                        <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">CALEFACCIÓN</span>
+                                        <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">{{property.Heating}}</span>
+                                    </li>
+
+                                </ul>
+                            </div>  
+                            <!-- End additional-details area  -->
+
+                            <div class="section property-features">      
+
+                                <h4 class="s-property-title">VIDEO</h4>                            
+
+                            </div>
+                            <!-- End features area  -->
+
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{property.video}}" autoplay; allowfullscreen ></iframe>
+                            </div>
+                             <!-- End video area  -->
+
+                            
+                            <hr>
+                            <div id="map"></div>
+                            <hr>
+
+                            
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-4 p0">
+                        <aside class="sidebar sidebar-property blog-asside-right">
+                            <div class="dealer-widget">
+                                <div class="dealer-content">
+                                    <div class="inner-wrapper">
+
+                                        <div class="clear">
+                                            <div class="col-xs-4 col-sm-4 dealer-face">
+                                                <a href="">
+                                                    <img src="assets/img/client-face1.png" class="img-circle">
+                                                </a>
+                                            </div>
+                                            <div class="col-xs-8 col-sm-8 ">
+                                                <h3 class="dealer-name">
+                                                    <a href="">AIK INMOBILIARIA</a>
+                                                    <span>Real Estate Agency</span>        
+                                                </h3>
+                                                <div class="dealer-social-media">
+                                                    <a class="twitter" target="_blank" href="">
+                                                        <i class="fa fa-twitter"></i>
+                                                    </a>
+                                                    <a class="facebook" target="_blank" href="">
+                                                        <i class="fa fa-facebook"></i>
+                                                    </a>
+                                                    <a class="gplus" target="_blank" href="">
+                                                        <i class="fa fa-google-plus"></i>
+                                                    </a>
+                                                    <a class="linkedin" target="_blank" href="">
+                                                        <i class="fa fa-linkedin"></i>
+                                                    </a> 
+                                                    <a class="instagram" target="_blank" href="">
+                                                        <i class="fa fa-instagram"></i>
+                                                    </a>       
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="clear">
+                                            <ul class="dealer-contacts">                                       
+                                                <li><i class="pe-7s-map-marker strong"> </i> {{contact.address}}</li>
+                                                <li><i class="pe-7s-mail strong"> </i> {{contact.email}}</li>
+                                                <li><i class="pe-7s-call strong"> </i> {{contact.phone}}</li>
+                                            </ul>
+                                            {{contact.generalDescri|raw}}
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>                      
+
+                            <div class="panel panel-default sidebar-menu wow fadeInRight animated" >
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Busqueda Inteligente</h3>
+                                <button class="btn  toggle-btn" type="button" data-toggle="collapse" data-target="#search"><i class="fa fa-bars" ></i></button>
+                            </div>
+                            <div class="panel-body search-widget">
+                                <div class="jumbotron">
+                                    <div class="container mt-4" id="search">
+                                        {{ form_start(form) }}
+
+                                        <div class="form-row">
+                                            <div class="col">
+                                                {{ form_row(form.titleS) }}
+                                            </div>
+                                            <div class="col">
+                                            <div class="form-group">
+                                                <label for="search_address">DIRECCIÓN</label>
+                                                <input type="text" value="" placeholder="Approximative Address" id="search_address" class="form-control"/>
+                                            </div>
+                                            </div>
+                                            <div class="col">
+                                                {{ form_row(form.distance) }}
+                                            </div>
+                                        </div>
+
+                                        <div class="form-row">
+                                            <div class="col" hidden>
+                                                {{ form_row(form.propertyId) }}
+                                            </div>
+                                            <div class="col">
+                                                {{ form_row(form.situationS) }}
+                                            </div>
+                                            <div class="col">
+                                                {{ form_row(form.typeS) }}
+                                            </div>
+                                            <div class="col">
+                                                {{ form_row(form.stateS) }}
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="col">
+                                                {{ form_row(form.minSpace) }}
+                                            </div>
+                                            <div class="col">
+                                                {{ form_row(form.minRooms) }}
+                                            </div>
+                                            <div class="col">
+                                                {{ form_row(form.minBedrooms) }}
+                                            </div>
+                                            <div class="col">
+                                                {{ form_row(form.maxPrice) }}
+                                            </div>
+                                        </div> 
+
+                                        <div class="form-row">
+                                            <div class="col-xs-12">  
+                                                <input class="button btn largesearch-btn" value="BUSCAR" style="background-color: #FDC600; font-weight: bold;" type="submit">
+                                            </div> 
+                                        </div>
+                                                                
+                                    {{ form_end(form) }}
+                                    </div>
+                                </div> 
+                            </div>
+                        </div>
+                            </div>
+
+                        </aside>
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+
+    {% block javascripts %} 
+
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+    integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+    crossorigin=""></script>
+
+    <script type="text/javascript">
+    var map = L.map('map').setView([{{ property.lat}}, {{ property.lng}}], 13);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    L.marker([{{ property.lat}}, {{ property.lng}}]).addTo(map)
+    .bindPopup('{{ property.address}}')
+    .openPopup();
+    </script>
+    
+
+    {% endblock %}
+
+{% endblock %}

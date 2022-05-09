@@ -1,0 +1,112 @@
+{% extends '/admin/property/index.html.twig' %}
+
+{% block title %}GERENTE DE USUARIOS{% endblock %}
+
+{% block page_name %}GERENTE DE USUARIOS{% endblock %}
+
+{% block body %}
+
+<div class="container mt-4">
+    <div class="jumbotron">
+        <div class="container mt-4" id="search">
+            {{ form_start(form) }}
+
+            <div class="form-row">
+                <div class="col-md-3">
+                    {{ form_row(form.id) }}
+                </div>
+                <div class="col-md-9">
+                    {{ form_row(form.keyWord) }}
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-4">
+                    {{ form_row(form.phone) }}
+                </div>
+                <div class="col-md-4">
+                    {{ form_row(form.fax) }}
+                </div>
+                <div class="col-md-4">
+                    {{ form_row(form.roles) }}
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="col-xs-12">  
+                    <input class="button btn largesearch-btn" value="Search" style="background-color: #FDC600; font-weight: bold;" type="submit">
+                </div> 
+            </div>
+                                        
+            {{ form_end(form) }}
+        </div>
+    </div> 
+</div> 
+
+
+    <div class="container">
+         {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+             {{ message }}
+        </div>
+        {% endfor %}
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th><h4>ID</h4></th>
+                <th><h4>Nombre</h4></th>
+                <th><h4>Apellido</h4></th>
+                <th><h4>Correo Electrónico</h4></th>
+                <th><h4>Teléfono</h4></th>
+                <th><h4>Ocupación</h4></th>
+                <th><h4>Acciones</h4></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for user in users %}
+            <tr>
+                <td><strong>{{ user.id }}</strong></td>
+                <td><strong>{{ user.firstName }}</strong></td>
+                <td><strong>{{ user.lastName }}</strong></td>
+                <td><strong>{{ user.email }}</strong></td>
+                <td><strong>{{ user.phone }}</strong></td>
+                {% if user.id == 1 %}
+                <td style=" font-weight: bold;"><b>Messenger</b></td>
+                {% elseif user.role == 'ROLE_USER'%}
+                <td style="color: #1e7fd8; font-weight: bold;"><b>Client</b></td>
+                {% elseif user.role  == 'ROLE_AGENT' %}
+                <td style="color: #09a313; font-weight: bold;"><b>Agent</b></td>
+                {% else %}
+                <td style="color: #c77207; font-weight: bold;"><b>Admin</b></td>
+                {% endif %}
+                <td>
+                
+                <a href="{{ path('profile_update_admin' , {id: user.id}) }}" class="btn btn-secondary">EDITAR</a>
+                 <a class="btn btn-success" href="{{ path('profile_message' , {id: user.id}) }}" >ENVIAR MENSAJE</a>
+                 {% if user.id != 1 %}
+                 <form action="{{ path ('profile_delete_admin' , {id: user.id}) }}" method="post" style="display:inline-block">
+                 <input type="hidden" name="_method" value="DELETE">
+                 <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
+                 <button class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this User ? \nUser Name : {{user.firstName}} {{user.lastName}}')">ELIMINAR</button>
+                 </form>
+                 {% endif %}
+             </td>
+        
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="text-right">
+            <a href="{{ path('register') }}" class='btn btn-finish btn-primary pull-right'>Crear un nuevo usuario</a>
+        </div>
+
+        <div class="col-md-12"> 
+            <div class="pull-left">
+                <div class="pagination">
+                    {{ knp_pagination_render(users) }}
+                </div>
+             </div>                
+        </div>
+    </div>
+
+{% endblock %}

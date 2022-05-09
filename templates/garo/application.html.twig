@@ -1,0 +1,406 @@
+{% extends 'garo/index.html.twig' %}
+
+{% block title %}Application{% endblock %}
+
+ 
+
+{% block body %}
+        <div class="page-head"> 
+            <div class="container">
+                <div class="row">
+                    <div class="page-head-content">
+                        <h1 class="page-title"><center><b>AIK Inmobiliaria</b> | Application Form</h1></center>              
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End page header -->
+
+        <!-- End page header -->
+ 
+
+   
+        {% if (app.user) and (property is defined) %}
+
+        <div class="content-area user-profiel" style="background-color: #FCFCFC;">&nbsp;
+            <div class="container">   
+                <div class="row">
+                    <div class="col-sm-10 col-sm-offset-1 profiel-container">
+                            <div class="profiel-header">
+                                <h3>
+                                    INFORMACIÓN DE <b> LA APLICACIÓN </b><br>
+                                    <small>Si su información de contacto es incorrecta, <a href="{{ path('profile_update')}}">ACTUALICE</a> su cuenta.</small>
+                                </h3>
+                                <hr>
+                            </div>
+
+                            <div class="clear">
+
+                                <div class="col-sm-5 col-sm-offset-1">
+                                    <h4><b>CLIENTE</b> INFORMACIÓN</h4>
+                                    <div >
+                                        NOMBRE: <b>{{user.firstName}}</b>
+                                    </div>
+                                    <div >
+                                        Apellido: <b>{{user.lastName}}</b>
+                                    </div>
+                                    <div >
+                                        TELÉFONO: <b>{{user.phone}}</b>
+                                    </div>
+                                    <div >
+                                        EMAIL: <b>{{user.email}}</b>
+                                    </div>                          
+                                  
+                                </div>
+                                <div class="col-sm-5">
+                                    <h4><b>PROPIEDAD</b> INFORMACIÓN</h4>
+                                    <div >
+                                        PROPIEDAD TÍTULO: <b>{{property.title}}</b>
+                                    </div>
+                                    <div >
+                                        PROPIEDAD DIRECCIÓN: <b>{{property.address}}</b>
+                                    </div>
+                                    <div >
+                                        PROPIEDAD ESTADO: <b>{{property.situation}}</b>
+                                    </div>
+                                    <div >
+                                        PROPIEDAD PRECIO: <b>{{property.formattedPrice}} MX</b>
+                                    </div>
+                                </div>
+                                </div> 
+                            </div>
+                          </div> 
+                            </div>
+
+         <div class="content-area user-profiel" style="background-color: #FCFCFC;">&nbsp;
+            <div class="container">   
+                <div class="row">
+                    <div class="col-sm-10 col-sm-offset-1 profiel-container">
+
+                        {{ form_start(form)}}
+                            <div class="profiel-header">
+                                <h3>
+                                    <b>CONSTRUYE</b> SU APLICACIÓN <br>
+                                    <small>Esta información nos permitirá saber más sobre usted.</small>
+                                </h3>
+                                <hr>
+                            </div>
+
+                            <div class="clear">
+
+                                <div class="col-sm-5 col-sm-offset-1">
+                                    <div class="form-group">
+                                        <label>TIPO DE APLICACION :</label>
+                                        {{form_row(form.type)}}
+                                    </div>
+                                                                                               
+                                </div>
+                                <div class="col-sm-5">
+                                <div class="form-group">
+                                        <label>DIRECCIÓN :</label>
+                                        {{form_row(form.address)}}
+                                    </div>  
+                                    
+                                </div>
+                                </div>
+
+                                <div class="col-sm-10 col-sm-offset-1">
+                                <div class="form-group">
+                                        <label>CONTENIDO :</label>
+                                        {{form_row(form.content)}}
+                                    </div>
+                                </div>
+                                <div class="col-sm-5 col-sm-offset-1">
+
+                                <button type='submit' class='btn btn-finish btn-primary'><i class="fa fa-check-square-o"></i> APLICAR</button>
+                                </div>
+                            </div>
+                    
+                    {{form_end(form)}}
+
+                </div>
+            </div><!-- end row -->
+
+        </div>
+    </div>        
+
+        {% elseif (app.user) %}
+        <div class="content-area user-profiel" style="background-color: #FCFCFC;">&nbsp;
+            <div class="container">   
+                <div class="row">
+                    <div class="col-sm-10 col-sm-offset-1 profiel-container">
+                            <div class="profiel-header">
+                                <h3>
+                                    INFORMACIÓN DE <b> LA APLICACIÓN </b><br>
+                                    <small>Si su información de contacto es incorrecta, <a href="{{ path('profile_update')}}">ACTUALICE</a> su cuenta.</small>
+                                </h3>
+                                <hr>
+                            </div>
+
+                            <div class="clear">
+
+                                <div class="col">
+                                    <center>
+                                    <h4><b>CLIENTE</b> INFORMACIÓN</h4>
+                                    <div >
+                                        NOMBRE: <b>{{user.firstName}}</b>
+                                    </div>
+                                    <div >
+                                        APELLIDO : <b>{{user.lastName}}</b>
+                                    </div>
+                                    <div >
+                                        TELÉFONO: <b>{{user.phone}}</b>
+                                    </div>
+                                    <div >
+                                        EMAIL: <b>{{user.email}}</b>
+                                    </div>                                                  
+                                    </center>
+                                </div>
+                            </div>
+                          </div> 
+                            </div>
+
+         <div class="content-area user-profiel" style="background-color: #FCFCFC;">&nbsp;
+            <div class="container">   
+                <div class="row">
+                    <div class="col-sm-10 col-sm-offset-1 profiel-container">
+
+                        {{ form_start(form)}}
+                            <div class="profiel-header">
+                                <h3>
+                                    <b>CONSTRUYE</b> SU APLICACIÓN <br>
+                                    <small>Esta información nos permitirá saber más sobre usted.</small>
+                                </h3>
+                                <hr>
+                            </div>
+
+                            <div class="clear">
+
+                                <div class="col-sm-5 col-sm-offset-1">
+                                    <div class="form-group">
+                                        <label>TIPO DE APLICACION :</label>
+                                        {{form_row(form.type)}}
+                                    </div>
+                                                                                               
+                                </div>
+                                <div class="col-sm-5">
+                                <div class="form-group">
+                                        <label>DIRECCIÓN :</label>
+                                        {{form_row(form.address)}}
+                                    </div>  
+                                    
+                                </div>
+                                </div>
+
+                                <div class="col-sm-10 col-sm-offset-1">
+                                <div class="form-group">
+                                        <label>CONTENIDO :</label>
+                                        {{form_row(form.content)}}
+                                    </div>
+                                </div>
+                                <div class="col-sm-5 col-sm-offset-1">
+
+                                <button type='submit' class='btn btn-finish btn-primary'><i class="fa fa-check-square-o"></i> APLICAR</button>
+                            </div>
+  
+                                
+                            </div>
+                    
+                    {{form_end(form)}}
+
+                </div>
+            </div><!-- end row -->
+
+        </div>
+    </div>
+
+        {% elseif (property is defined) %}
+
+        <div class="content-area user-profiel" style="background-color: #FCFCFC;">&nbsp;
+            <div class="container">   
+                <div class="row">
+                    <div class="col-sm-10 col-sm-offset-1 profiel-container">
+                            <div class="profiel-header">
+                                <h3>
+                                    INFORMACIÓN DE <b> LA APLICACIÓN </b><br>
+                                    <small>Si la información de la propiedad es incorrecta, consulte la sección <a href="{{ path('properties')}}"> PROPIEDADES </a> nuevamente.</small>
+                                </h3>
+                                <hr>
+                            </div>
+
+                            <div class="clear">
+
+                                <div class="col">
+                                    <center>
+                                    <h4>  INFORMACIÓN DE <b>LA PROPIEDAD </b> </h4>
+                                    <div >
+                                        TITULO DE PROPIEDAD: <b>{{property.title}}</b>
+                                    </div>
+                                    <div >
+                                        DIRECCIÓN DE PROPIEDAD: <b>{{property.address}}</b>
+                                    </div>
+                                    <div >
+                                        ESTADO DE LA PROPIEDAD: <b>{{property.situation}}</b>
+                                    </div>
+                                    <div >
+                                        PRECIO DE LA PROPIEDAD: <b>{{property.formattedPrice}} MX</b>
+                                    </div>
+                                </div>
+                                </center>
+                                </div> 
+                            </div>
+                          </div> 
+                            </div>
+<br>
+<hr>
+<br>
+         <div class="content-area user-profiel" style="background-color: #FCFCFC;">&nbsp;
+            <div class="container">   
+                <div class="row">
+                    <div class="col-sm-10 col-sm-offset-1 profiel-container">
+
+                        {{ form_start(form)}}
+                            <div class="profiel-header">
+                                <h3>
+                                    <b>CONSTRUYE</b> SU APLICACIÓN <br>
+                                    <small>Esta información nos permitirá saber más sobre usted.</small>
+                                </h3>
+                                <hr>
+                            </div>
+
+                            <div class="clear">
+
+                                <div class="col-sm-5 col-sm-offset-1">
+
+                                    <div class="form-group">
+                                        <label>NOMBRE :<small>(required)</small></label>
+                                         {{form_row(form.firstName)}}
+                                    </div>
+                                    <div class="form-group">
+                                        <label>APELLIDO :<small>(required)</small></label>
+                                        {{form_row(form.lastName)}}
+                                    </div>
+                                    <div class="form-group">
+                                        <label>DIRECCIÓN :</label>
+                                        {{form_row(form.address)}}
+                                    </div>
+                                    <div class="form-group">
+                                        <label>OTRO EMAIL :</label>
+                                        {{form_row(form.otherEmail)}}
+                                    </div>                                   
+                                  
+                                </div>
+                                <div class="col-sm-5">
+                                    <div class="form-group">
+                                        <label>EMAIL :<small>(required)</small></label>
+                                        {{form_row(form.email)}}
+                                    </div> 
+                                    <div class="form-group">
+                                        <label>TELÉFONO :<small>(required)</small></label>
+                                        {{form_row(form.phone)}}
+                                    </div>
+                                    <div class="form-group">
+                                        <label>TIPO DE APLICACION :</label>
+                                        {{form_row(form.type)}}
+                                    </div>
+                                    <div class="form-group">
+                                        <label>CONTENIDO :</label>
+                                        {{form_row(form.content)}}
+                                    </div>
+                                </div>
+                                </div>
+
+                                <div class="col-sm-5 col-sm-offset-1">
+
+                                <button type='submit' class='btn btn-finish btn-primary'><i class="fa fa-check-square-o"></i> APLICAR</button>
+                            </div>
+  
+                                
+                            </div>
+                    
+                    {{form_end(form)}}
+
+                </div>
+            </div><!-- end row -->
+
+        </div>
+    </div>     
+
+        {% else %}
+            <div class="content-area user-profiel" style="background-color: #FCFCFC;">&nbsp;
+            <div class="container">   
+                <div class="row">
+                    <div class="col-sm-10 col-sm-offset-1 profiel-container">
+
+                        {{ form_start(form)}}
+                            <div class="profiel-header">
+                                <h3>
+                                    <b>CONSTRUYE</b> SU APLICACIÓN <br>
+                                    <small>Esta información nos permitirá saber más sobre usted.</small>
+                                </h3>
+                                <hr>
+                            </div>
+
+                            <div class="clear">
+
+                                <div class="col-sm-5 col-sm-offset-1">
+
+                                    <div class="form-group">
+                                        <label>NOMBRE :<small>(required)</small></label>
+                                         {{form_row(form.firstName)}}
+                                    </div>
+                                    <div class="form-group">
+                                        <label>APELLIDO :<small>(required)</small></label>
+                                        {{form_row(form.lastName)}}
+                                    </div>
+                                    <div class="form-group">
+                                        <label>DIRECCIÓN :</label>
+                                        {{form_row(form.address)}}
+                                    </div>
+                                    <div class="form-group">
+                                        <label>OTRO EMAIL :</label>
+                                        {{form_row(form.otherEmail)}}
+                                    </div>                                   
+                                  
+                                </div>
+                                <div class="col-sm-5">
+                                    <div class="form-group">
+                                        <label>EMAIL :<small>(required)</small></label>
+                                        {{form_row(form.email)}}
+                                    </div> 
+                                    <div class="form-group">
+                                        <label>TELÉFONO :<small>(required)</small></label>
+                                        {{form_row(form.phone)}}
+                                    </div>
+                                    <div class="form-group">
+                                        <label>TIPO DE APLICACION :</label>
+                                        {{form_row(form.type)}}
+                                    </div>
+                                    <div class="form-group">
+                                        <label>CONTENIDO :</label>
+                                        {{form_row(form.content)}}
+                                    </div>
+                                </div>
+                                </div>
+
+                                <div class="col-sm-5 col-sm-offset-1">
+
+                                <button type='submit' class='btn btn-finish btn-primary'><i class="fa fa-check-square-o"></i> APLICAR</button>
+                            </div>
+  
+                                
+                            </div>
+                    
+                    {{form_end(form)}}
+
+                </div>
+            </div><!-- end row -->
+
+        </div>
+    </div>     
+        {% endif %}
+</div>        
+</div>
+
+   {% endblock %}
+

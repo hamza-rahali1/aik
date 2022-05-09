@@ -1,0 +1,112 @@
+{% extends 'garo/index.html.twig' %}
+
+{% block title %}Update Account{% endblock %}
+
+{% block body %}
+
+    
+<div class="page-head"> 
+            <div class="container">
+                <div class="row">
+                    <div class="page-head-content">
+                        <h1 class="page-title"><center> AIK INMOBILIARIA |<b> FAVORIS</b> </center></h1>               
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End page header -->
+   
+
+     
+  <!-- property area -->
+        <div class="content-area recent-property" style="background-color: #FFF;">
+            <div class="container">   
+                <div class="row">
+
+                    <div class="col-md-9 pr-30 padding-top-40 properties-page user-properties">
+
+                        
+
+                        <div class="section"> 
+                            <div id="list-type" class="proerty-th-list">
+                                {% for property in favories %} 
+                                <div class="col-md-4 p0">
+                                    <div class="box-two proerty-item">
+                                        <div class="item-thumb">
+                                            {% if property.situation == 1 %}
+                                            <span class="badge badge-pill badge-success" style="position: absolute; left:10px; background:#0FB8D3; top:10px;z-index: 3">For Sell</span>
+                                            {% elseif property.situation == 2 %}
+                                            <span class="badge badge-pill badge-success" style="position: absolute; left:10px; background:#23E97A; top:10px;z-index: 3">For Rent</span>
+                                            {% else %}
+                                            <span class="badge badge-pill badge-success" style="position: absolute; left:10px; background:#DC9A0C; top:10px;z-index: 3">Just Sold</span>   
+                                            {% endif %}
+                                            <a href="{{ path('property.show', {id: property.id, slug: property.slug}) }}" ><img src="assets/img/demo/property-1.jpg"></a>
+                                        </div>
+                                        <div class="item-entry overflow">
+                                            <h5><a href="{{ path('property.show', {id: property.id, slug: property.slug}) }}">  {{ property.title }}  </a></h5>
+                                            <div class="dot-hr"></div>
+                                            <span class="pull-left"><b> Area :</b> {{ property.space }} m² </span>
+                                            <span class="proerty-price pull-right"> {{ property.formattedPrice }} MX</span>
+                                            <p style="display: none;">{{ property.description}}</p>
+                                            <div class="property-icon">
+                                                <img src="assets/img/icon/bed.png">({{ property.bedrooms }})|
+                                                <img src="assets/img/icon/shawer.png">({{ property.bathrooms }})|
+                                                <img src="assets/img/icon/cars.png">({{ property.parking }}  
+
+                                                <div class="dealer-action pull-right">                                        
+                                                    <button style="color:#FDC600;" href="submit-property.html" class="button"><b>Request to Apply</b></button>
+                                                    <form action="{{ path ('favory.user.delete' , {id: property.id}) }}" method="post" style="display:inline-block">
+                                                    <input type="hidden" name="_method" value="DELETE">
+                                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ property.id) }}">
+                                                    <button style="color:#FDC600;" class="button" onclick="return confirm('Are you sure you want to delete this Favorite property ? \nProperty Title : {{property.title}}')"><b>Delete</b></button>
+                                                    </form>
+                                                    <button style="color:#FDC600;" href="{{ path('property.show', {id: property.id, slug: property.slug}) }}" class="button"><b>View</b></button>
+                                                </div>
+                                            </div>
+
+
+                                        </div>                            
+
+
+                                    </div>
+                                </div> 
+                                {% endfor %}                                                       
+                            </div>
+                        </div>
+
+                      <div class="col-md-12">
+
+                        <div class="pull-right">
+                            <div class="pagination">
+                            {{ knp_pagination_render(favories) }}
+                            </div>
+                        </div>                
+                    </div>
+
+                    </div>       
+
+                    <div class="col-md-3 p0 padding-top-40">
+                        <div class="blog-asside-right">
+                            <div class="panel panel-default sidebar-menu wow fadeInRight animated" >
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Hello {{app.user.firstName}}</h3>
+                                </div>
+                                <div class="panel-body search-widget">
+
+                                </div>
+                            </div>
+
+                            <div class="panel panel-default sidebar-menu wow fadeInRight animated">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Recommended</h3>
+                                </div>
+                                <div class="panel-body recent-property-widget">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+   {% endblock %}  

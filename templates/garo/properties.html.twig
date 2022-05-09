@@ -1,0 +1,203 @@
+
+
+{% extends 'garo/index.html.twig' %}
+
+{% block title %}Check our offers{% endblock %}
+
+{% block body %}
+        <!-- Body content -->
+    
+       
+    
+
+        <div class="page-head"> 
+            <div class="container">
+                <div class="row">
+                    <div class="page-head-content">
+                        <h1 class="page-title"><center> AIK INMOBILIARIA |<b> OUR OFFERS</b> </center></h1>               
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End page header -->
+
+        <!-- property area -->
+        <div class="properties-area recent-property" style="background-color: #FFF;">
+            <div class="container">  
+                <div class="row">
+                     
+                <div class="col-md-3 p0 padding-top-40">
+                    <div class="blog-asside-right pr0">
+                        <div class="panel panel-default sidebar-menu wow fadeInRight animated" >
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Busqueda Inteligente</h3>
+                                <button class="btn  toggle-btn" type="button" data-toggle="collapse" data-target="#search"><i class="fa fa-bars" ></i></button>
+                            </div>
+                            <div class="panel-body search-widget">
+                                <div class="jumbotron">
+                                    <div class="container mt-4" id="search">
+                                        {{ form_start(form) }}
+
+                                        <div class="form-row">
+                                            <div class="col">
+                                                {{ form_row(form.titleS) }}
+                                            </div>
+                                            <div class="col">
+                                            <div class="form-group">
+                                                <label for="search_address">DIRECCION</label>
+                                                <input type="text" value="" placeholder="Approximative Address" id="search_address" class="form-control"/>
+                                            </div>
+                                            </div>
+                                            <div class="col">
+                                                {{ form_row(form.distance) }}
+                                            </div>
+                                        </div>
+
+                                        <div class="form-row">
+                                            <div class="col" hidden>
+                                                {{ form_row(form.propertyId) }}
+                                            </div>
+                                            <div class="col">
+                                                {{ form_row(form.situationS) }}
+                                            </div>
+                                            <div class="col">
+                                                {{ form_row(form.typeS) }}
+                                            </div>
+                                            <div class="col">
+                                                {{ form_row(form.stateS) }}
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="col">
+                                                {{ form_row(form.minSpace) }}
+                                            </div>
+                                            <div class="col">
+                                                {{ form_row(form.minRooms) }}
+                                            </div>
+                                            <div class="col">
+                                                {{ form_row(form.minBedrooms) }}
+                                            </div>
+                                            <div class="col">
+                                                {{ form_row(form.maxPrice) }}
+                                            </div>
+                                        </div> 
+
+                                        <div class="form-row">
+                                            <div class="col-xs-12">  
+                                                <input class="button btn largesearch-btn" value="BUSCAR" style="background-color: #FDC600; font-weight: bold;" type="submit">
+                                            </div> 
+                                        </div>
+                                                                
+                                    {{ form_end(form) }}
+                                    </div>
+                                </div> 
+                            </div>
+                        </div>
+
+                
+                    </div>
+                </div>
+
+                <div class="col-md-9  pr0 padding-top-40 properties-page">
+                    <div class="col-md-12 clear"> 
+                        <div class="col-xs-10 page-subheader sorting pl0">
+                            <ul class="sort-by-list">
+                                <li class="" href="javascript:void(0);">
+
+                                    <div class="d-flex justify-content-end mb-2 mt-4">
+					                    {{ knp_pagination_sortable(properties, 'Ordenar por Fecha', 'p.created_at') }}
+                                    </div>
+                                </li>
+                                <li class="" href="javascript:void(0);">
+
+                                    <div class="d-flex justify-content-end mb-2 mt-4">
+					                    {{ knp_pagination_sortable(properties, 'Ordenar por Precio', 'p.price') }}
+                                    </div>
+                                </li>
+                            </ul><!--/ .sort-by-list-->
+
+                        </div>
+
+                        <div class="col-xs-2 layout-switcher">
+                            <a class="layout-list" href="javascript:void(0);"> <i class="fa fa-th-list"></i>  </a>
+                            <a class="layout-grid active" href="javascript:void(0);"> <i class="fa fa-th"></i> </a>                          
+                        </div><!--/ .layout-switcher-->
+                    </div>
+
+                    <div class="col-md-12 clear"> 
+                        <div id="list-type" class="proerty-th">
+
+                          
+                    {% for property in properties %} 
+                                <div class="col-sm-6 col-md-4 p0">
+                                    <div class="box-two proerty-item">
+                                        <div class="item-thumb">
+                                            {% if property.situation == 1 %}
+                                            <span class="badge badge-pill badge-success" style="position: absolute; left:10px; background:#0FB8D3; top:10px;z-index: 3">For Sell</span>
+                                            {% elseif property.situation == 2 %}
+                                            <span class="badge badge-pill badge-success" style="position: absolute; left:10px; background:#23E97A; top:10px;z-index: 3">For Rent</span>
+                                            {% else %}
+                                            <span class="badge badge-pill badge-success" style="position: absolute; left:10px; background:#DC9A0C; top:10px;z-index: 3">Just Sold</span>   
+                                            {% endif %}
+                                            {% for image in property.images %}
+                                                    <a href="{{ path('property.show', {id: property.id, slug: property.slug}) }}" >
+                                                        <img src="{{ asset('/uploads/' ~ image.name )}}" alt"image">
+                                                    </a>
+                                            {% endfor %}
+                                        </div>
+                                        
+                                        <div class="item-entry overflow mb-6">
+                                            <h5><a href="{{ path('property.show', {id: property.id, slug: property.slug}) }}"> {{ property.title }} </a></h5>
+                                            <div class="dot-hr"></div>
+                                            <span class="pull-left"><b>Superficie:</b> {{ property.space }} m² </span>
+                                            <span class="proerty-price pull-right"> {{ property.formattedPrice }} MX</span>
+                                            <p style="display: none;"><b>Dirección: </b>{{ property.address}}</p>
+                                            <div class="property-icon">
+                                                <img src="assets/img/icon/bed.png">({{ property.bedrooms }})|
+                                                <img src="assets/img/icon/shawer.png">({{ property.bathrooms }})|
+                                                <img src="assets/img/icon/cars.png">({{ property.parking }})
+                                                <div class="dot-hr"></div>
+                                                         <a class="btn btn-secondary pull-right" href="{{path('favory.user.add' , {id: property.id, slug: property.slug}) }}" ><i class="fa fa-heart" style="color:#FDC600;"></i></button>                                    
+                                                        <center><a href="{{ path('apply_property' , {id: property.id}) }}" class="btn btn-secondary">Aplicar</a></center>
+                                                    
+                                            </div>
+                                        </div> 
+                                        
+                                    </div>
+                                </div> 
+                    {% endfor %}
+                        </div>
+                    </div>
+                   
+                    <div class="col-md-12">
+
+                        <div class="pull-right">
+                            <div class="pagination">
+                            {{ knp_pagination_render(properties) }}
+                            </div>
+                        </div>                
+                    </div>
+                </div>  
+                </div>              
+            </div>
+        </div>
+
+         {% block javascripts %}
+
+    <script src="https://cdn.jsdelivr.net/npm/places.js@1.19.0"></script>
+    <script type="text/javascript">
+     var placesAutocomplete = places({
+     appId: 'plL9YHRBL5R5',
+     apiKey: '2d513f73c21e3cdad44b6b1690415837',
+     container: document.querySelector('#search_address')
+     }); 
+     
+     placesAutocomplete.on('change', e => {
+        document.querySelector('#lat').value = e.suggestion.latlng.lat;
+        document.querySelector('#lng').value = e.suggestion.latlng.lng;
+
+    })
+    </script>
+    {% endblock %}
+
+{% endblock %}        

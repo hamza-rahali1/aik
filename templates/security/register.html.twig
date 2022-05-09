@@ -1,0 +1,232 @@
+{% extends 'garo/index.html.twig' %}
+
+{% block title %}REGISTRATE Y CREA TU PERFIL{% endblock %}
+
+{% block body %}
+
+        <div class="page-head"> 
+            <div class="container">
+                <div class="row">
+                    <div class="page-head-content">
+                        <h1 class="page-title"> REGISTRATE Y CREA TU PERFIL </h1>               
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End page header -->
+ 
+
+   
+
+        <div class="content-area user-profiel" style="background-color: #FCFCFC;">&nbsp;
+            <div class="container">   
+                <div class="row">
+                    <div class="col-sm-10 col-sm-offset-1 profiel-container">
+
+                        {{ form_start(form)}}
+                            <div class="profiel-header">
+                                <h3>
+                                    <b>CREA</b> TU PERFIL <br>
+                                    <small>Esta información nos permitirá saber más sobre usted.</small>
+                                    <hr>
+                                    <p>This is a text to explain .....</p>
+                                </h3>
+                                <hr>
+                            </div>
+
+                            <div class="clear">
+
+                                <div class="col-sm-5 col-sm-offset-1">
+
+                                    <div class="form-group">
+                                        <label>Nombre  <small>(required)</small></label>
+                                         {{form_row(form.firstName)}}
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Apellido  <small>(required)</small></label>
+                                        {{form_row(form.lastName)}}
+                                    </div> 
+                                    <div class="form-group">
+                                        <label>Correo Electrónico <small>(required)</small></label>
+                                        {{form_row(form.email)}}
+                                    </div> 
+                                    {% if is_granted('ROLE_ADMIN') %}
+                                        {{form_row(form.role)}}
+                                    {% endif %}
+                                  
+                                </div>
+                                <div class="col-sm-5">
+                                    <div class="form-group">
+                                        <label>Teléfono Celular <small>(required)</small></label>
+                                        {{form_row(form.phone)}}
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Contraseña  <small>(required)</small></label>
+                                        {{form_row(form.hash)}}
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Confirmar contraseña : <small>(required)</small></label>
+                                        {{form_row(form.passwordcomfirm)}}
+                                    </div>
+                                    
+                                </div>  
+                                
+                            </div>
+
+                            <div class="clear">
+                                <br>
+                                <hr>
+                                <br>
+                                <div class="col-sm-5 col-sm-offset-1">
+                                    <div class="form-group">
+                                        <label>Facebook :</label>
+                                        {{form_row(form.facebook)}}
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Linkedin :</label>
+                                        {{form_row(form.linkedin)}}
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Sitio Web :</label>
+                                        {{form_row(form.website)}}
+                                    </div>
+                                </div>  
+
+                                <div class="col-sm-5">
+                                    <div class="form-group">
+                                        <label>Otro Email :</label>
+                                        {{form_row(form.otherEmail)}}
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Como te podemos ayudar?</label>
+                                        {{form_row(form.description)}}
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Cómo se enteró de nosotros?</label>
+                                        {{form_row(form.fax)}}
+                                    </div>
+                                </div>
+ 
+                            </div>
+                            <br>
+
+                            <div class="col-sm-offset-1">
+                                <input type="checkbox" id="policy" name="policy" required>
+                                <label for="policy">&nbsp; Acepto Términos y &nbsp;</label><button type="button"  data-toggle="modal" data-target="#exampleModalLong"><b>Condiciones.</b></button>
+                            </div>
+                            <div class="col-sm-offset-1">
+                                <br>
+                                <button type='submit' class='btn btn-finish btn-primary'>CREA PERFIL</button>
+                            </div>
+                            <br>
+                    {{form_end(form)}}
+
+                    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h3 class="modal-title" id="exampleModalLongTitle">Aviso de Privacidad </h3>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <b><h5>I. Responsable de la protección de sus datos personales. </h5></b>
+                                <div>
+                                AIK, Asesoría Inmobiliaria, con domicilio en Carretera México Toluca 5860, Colonia Contadero, Alcaldía Cuajimalpa de Morelos, C.P. 05860 en la  Ciudad de México, es responsable del tratamiento de los datos personales recabados de sus clientes, prospectos, y demás personas interesadas en recibir información de sus servicios, en términos de lo establecido por los artículos 3º fracción XIV y 37 fracción III de la Ley Federal de Protección de Datos Personales en Posesión de Particulares (LFPDPPP) y 70 del Reglamento de la citada Ley (RLFPDPPP). 
+                                </div>
+                                <b><h5>II. Tipo de datos personales recabados y finalidades del tratamiento. </h5></b>
+                                <div>
+                                AIK Asesoría Inmobiliaria, podrá recabar de sus clientes, prospectos y personas interesadas en cotizaciones o en información de sus servicios: datos personales generales como nombres, correos electrónicos, números telefónicos, dirección física, RFC, los cuales le informamos, de conformidad con lo establecido en los artículos 16 y 17 de la LFPDPPP que, sus datos personales serán utilizados para las siguientes finalidades esenciales:
+
+                                Proveer a nuestros clientes servicios profesionales de representación legal que ha contratado, realizar los trámites necesarios para los servicios de representación legal e informar sobre la situación y estado de los asuntos que sean llevados en su nombre y representación.
+
+                                Proveer a nuestros clientes con información de los servicios profesionales de representación legal ofrecidos por AIK Asesoría Inmobiliaria en México; Para la facturación de los servicios que hayan sido solicitados por nuestros clientes;
+
+                                Brindar información que sea requerida sobre las características de los diversos servicios que ofrece la firma; Para enviar cotizaciones a aquellas personas que se interesen en nuestros servicios, así como para dar seguimiento a nuestros prospectos;
+
+                                Para compartir información sobre nuestros servicios, así como eventos, a través de nuestra página web y redes sociales (Facebook, Instagram, Twitter, LinkedIn, etc.).; Para realizar estudios de mercado y evaluación sobre la calidad de nuestros servicios;
+
+                                Para brindar servicios de atención a nuestros clientes, aclaración de dudas o quejas que existan sobre nuestros servicios; Para ponernos en contacto con nuestros clientes, en caso que así lo soliciten, a través de los mensajes de contacto enviados por medio de nuestro sitio Web, correo electrónico o bien a través de redes sociales;
+
+                                Para confirmar o corregir la información con la que contamos, a fin de garantizar la mejor atención personalizada a nuestros clientes; Para notificarle, en su caso, los cambios al presente aviso de privacidad.
+
+                                AIK Asesoría Inmobiliaria, tratará los datos personales que le sean proporcionados por sus clientes con total confidencialidad. Todos nuestros asociados se encuentran capacitados y comprometidos a proteger los datos personales en términos de la LFPDPPP. AIK Asesoría Inmobiliaria tomará todas las medidas necesarias para mantener segura la información personal de sus clientes.
+
+                                </div>
+                                <b><h5>III. Transferencia de datos personales.  </h5></b>
+                                <div>
+                                AIK Asesoría Inmobiliaria, podrá utilizar los datos obtenidos de sus clientes para brindarle un mejor servicio. Esto, para todos los fines permitidos por la Ley LFPDPPP en términos de lo señalado en el artículo 37 fracción III de la LFPDPPP, por ejemplo se puede utilizar su información para:
+
+                                Ofrecerle detalles, características y especificaciones técnicas de servicios profesionales de representación legal ofrecidos por la firma; Confirmar y corregir la información con la que contamos de nuestros clientes conforme a lo establecido en la ley LFPDPPP.
+
+                                Para complementar los servicios de asesoría, legales, corretaje inmobiliario  que se han contratado y contactar a peritos relacionados con los asuntos en los que el cliente sea representado. 
+
+                                Para un mejor manejo de información y comunicación con los clientes, todos nuestros procesos son constantemente monitoreados a fin de dar el cuidado adecuado y protección a su información. Por regla general, AIK, Asesoría Inmobiliaria, solo revelará datos personales conforme a las Leyes vigentes que regulen sus actividades (fiscales, del trabajo, seguridad social, protección al consumidor, requerimientos de autoridad judicial, etc.), de acuerdo con el mandato legal aplicable y en la medida que las diferentes autoridades consideren como razonablemente necesaria.
+
+                                Fuera de estos casos AIK Asesoría Inmobiliaria, no revelará ninguna información personal a otras compañías que pretendan vender productos o servicios a sus clientes. Por ejemplo, no venderá su nombre, ni su dirección de correo electrónico a empresas de catálogos, comerciales o empresas cuyos servicios no se encuentren relacionados, ni sean compatibles con los servicios de AIK Asesoría Inmobiliaria.
+    
+                                </div>
+
+                                <b><h5>IV. Uso de Imágenes   </h5></b>
+                                <div>
+                                Las imágenes que sean tomadas de las personas que asisten a los mismos, así como las que son compartidas por quienes se unen a nuestras redes sociales, podrán ser utilizadas con el objeto de documentar las actividades que se desarrollan en los mismos. 
+                                AIK, Asesoría Inmobiliaria podrá utilizar, imprimir, reproducir y publicar dicha(s) imagen(es) en medios impresos, electrónicos, boletines, anuarios y publicaciones, en todas sus manifestaciones, sus interpretaciones o ejecuciones, sus ediciones, sus fonogramas o video-gramas, y en sus emisiones y lo hará, sólo para fines informativos y periodísticos en términos del artículo 87 de la Ley Federal del Derecho de Autor.
+                                Cuando su imagen vaya a ser utilizada para fines publicitarios, esta situación siempre le será notificada por AIK, Asesoría Inmobiliaria  y se le solicitará su consentimiento previo a su obtención y usos para estos fines. 
+                                </div>
+
+                                <b><h5>V. Opciones y medios para limitar el uso y divulgación de los datos personales. </h5></b>
+                                <div>
+                                Conforme a lo señalado en el artículo 16º, fracción III de la LFPDPPP, si usted desea limitar el uso y divulgación de sus datos personales para fines mercadotécnicos o publicitarios, puede inscribirse gratuitamente en el Registro Público para Evitar Publicidad (REPEP), a cargo de la Procuraduría Federal del Consumidor (PROFECO) repep.profeco.gob.mx/index.jsp, de conformidad con lo establecido en los artículos 18 y 18 Bis de la Ley Federal de Protección al Consumidor; o bien usted podrá́ en todo momento enviar un correo a la dirección electrónica:atención@aikinmobiliaria.com.mx solicitando dejar de ser contactado para fines mercadotécnicos o publicitarios. 
+                                </div>
+
+                                <b><h5>VI. Revocación del consentimiento y ejercicio de derechos de Acceso, Rectificación, Cancelación y Oposición. </h5></b>
+                                <div>
+                                Conforme a lo señalado en la Ley Federal de Protección de Datos Personales en Posesión de los Particulares, usted podrá solicitar el acceso, la rectificación, la cancelación (en caso que ésta sea legalmente procedente) u oponerse al uso de los datos personales que hayan sido proporcionados al responsable, o revocar el consentimiento que haya otorgado. Su solicitud será atendida por nuestro Oficial de Privacidad,  a través de la dirección de correo electrónico atencion@aikinmobiliaria.com.mx 
+
+                                Para ejercer sus derechos de Acceso, Rectificación, Cancelación y Oposición, así como para revocar su consentimiento, deberá seguir el siguiente procedimiento:
+
+                                Enviar un correo electrónico a la dirección atencion@aikinmobiliaria.com.mx señalando su nombre completo, la relación jurídica o comercial que tenga con nuestra empresa comercialmente conocida como AIK Asesoría Inmobiliaria (si es usted un cliente, un usuarios del sitio web, redes sociales, etc.) y el tipo de derecho que desea ejercer.
+
+                                Llenar el formulario de solicitud ARCO que le será remitido, identificando con precisión los datos respecto de los cuales solicite el acceso, rectificación, cancelación u oposición, o aquellos respecto a los que desee revocar su consentimiento, anexando alguno de los documentos de identificación que se señalan en dicho formulario con el fin de acreditar su identidad o la personalidad con la que realiza la solicitud. Una vez lleno este formulario deberá enviarse a la dirección de correo electrónico señalada en el numeral anterior y podrán adjuntarse aquellos documentos que sean relevantes para la solicitud en cuestión. Para las solicitudes de rectificación es necesario que el titular señale con precisión cuál es la modificación que debe hacerse, anexando la documentación que justifique la procedencia de su solicitud.
+
+                                Una vez recibida su solicitud le será enviado un Acuse de recibo con el número de folio (expediente) y la fecha de recepción que corresponda. En caso de que la misma no cumpla con los requisitos legales, dentro de los cinco días hábiles siguientes a su recepción le será requerido subsanar su solicitud en un término de diez días, de no hacerlo, la misma se tendrá por no presentada.
+                                En caso que su solicitud haya sido enviada en sábado, domingo o bien en día inhábil laboral, la misma podrá ser recibida a partir del día hábil siguiente al que la haya enviado.
+                                Su solicitud será contestada vía correo electrónico en un término de veinte días hábiles contados a partir de la fecha de acuse de recibo. Este plazo podrá ampliarse por veinte días adicionales cuando existan causas que lo justifiquen, esta situación se notificará al titular de acuerdo a lo establecido por el artículo 97 del Reglamento de la LFPDPPP.
+
+                                En caso de que su solicitud sea procedente de conformidad con la LFPDPPP y demás normatividad vigente, se otorgará el acceso, se rectificarán o cancelaran sus datos, se hará efectivo su derecho de oposición o se tendrá por revocado el consentimiento, dentro de los quince días siguientes a la fecha en que se dé respuesta a su solicitud. Este plazo podrá ampliarse por quince días adicionales cuando existan causas que lo justifiquen, esta situación se notificará al titular de acuerdo a lo establecido por el artículo 97 del Reglamento de la LFPDPPP.
+
+                                En todos los casos en que su solicitud sea procedente, en términos de los señalado por los artículos 32, 33, 34 y 35 de la LFPDPPP, la entrega de los datos personales será gratuita a través de la dirección de correo electrónico que el titular de los datos señale para dichos efectos, en caso de que requiera que la información le sea entregada de modo diverso deberá cubrir únicamente los gastos justificados de envío y/o el costo de reproducción en copias u otros formatos que se generen.
+
+                                </div>
+                                
+                                <b><h5>VII. ¿Ante quién puede presentar sus quejas y denuncias por el tratamiento indebido de sus datos personales?  </h5></b>
+                                <div>
+                                Si usted considera que su derecho de protección de datos personales ha sido lesionado por alguna conducta, de nuestros asociados o de nuestras actuaciones o respuesta a sus solicitudes, presume que en el tratamiento de sus datos personales existe alguna violación a las disposiciones previstas en la Ley Federal de Protección de Datos Personales en Posesión de los Particulares, podrá interponer la queja o denuncia correspondiente ante el Instituto Nacional de Transparencia, Acceso a la Información y Protección de Datos Personales (INAI), para mayor información visite www.inai.org.mx 
+                                </div>
+
+                                <b><h5>VIII. Más información – Oficina de Privacidad. </h5></b>
+                                <div>
+                                Si tiene alguna duda sobre el contenido, interpretación o alcance de este aviso, o requiere mayor información respecto al tratamiento de su información, puede contactar al Oficial de Privacidad, vía correo electrónico en la dirección atención@aikinmobiliaria.com.mx  
+                                </div>
+
+                                <b><h5>IX. Cambios en el Aviso de Privacidad. </h5></b>
+                                <div>
+                                Este Aviso de Privacidad está vigente desde el 1º de enero de 2012 y podrá ser modificado en forma discrecional por el responsable en términos de la normatividad aplicable, cualquier modificación al mismo será comunicada por el responsable mediante la publicación del nuevo Aviso de Privacidad el cual usted podrá solicitar en nuestras oficinas. 
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerca</button>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div><!-- end row -->
+
+        </div>
+    </div>     
+
+   {% endblock %}  
